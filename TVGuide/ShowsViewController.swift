@@ -36,7 +36,7 @@ class ShowsViewController: UIViewController {
         setTableViewDelegates()
         tableView.rowHeight = 150
         tableView.register(nib,
-                     forCellReuseIdentifier: "showsTableViewCell")
+                           forCellReuseIdentifier: ShowsTableViewCell.reuseIdentifier)
     }
     
     func setTableViewDelegates() {
@@ -59,7 +59,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "showsTableViewCell", for: indexPath) as! ShowsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
         if let show = shows?[indexPath.row] {
             cell.setup(show: show)
