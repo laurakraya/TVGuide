@@ -16,6 +16,7 @@
 		4A81868B23E9FB5900965294 /* ShowsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */; };
 		4A81868C23EA123700965294 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */; };
 		4AB0381C23EDF303009B962A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0381B23EDF303009B962A /* NetworkManager.swift */; };
+		4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */; };
 		4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCA97623F1C83800D23BD4 /* Show.swift */; };
 		4ACCA97A23F1C97C00D23BD4 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */; };
 		4ACCA97B23F1C97C00D23BD4 /* ShowDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */; };
@@ -34,6 +35,7 @@
 		4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowsTableViewCell.swift; path = TVGuide/ShowsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowsTableViewCell.xib; path = TVGuide/ShowsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		4AB0381B23EDF303009B962A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		4ACCA97623F1C83800D23BD4 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowDetailViewController.xib; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		4A81866323E9F2C000965294 /* TVGuide */ = {
 			isa = PBXGroup;
 			children = (
+				4ABBDAC123FAFA2900FD0C9B /* Extensions */,
 				4AB0381A23EDF2D1009B962A /* Rest */,
 				4A81867C23E9F32B00965294 /* Models */,
 				4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */,
@@ -114,6 +117,14 @@
 				4AB0381B23EDF303009B962A /* NetworkManager.swift */,
 			);
 			path = Rest;
+			sourceTree = "<group>";
+		};
+		4ABBDAC123FAFA2900FD0C9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DF51C544605555BA6FC8608E /* Pods */ = {
@@ -249,6 +260,7 @@
 				4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */,
 				4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */,
 				4A81867A23E9F31E00965294 /* ShowsViewController.swift in Sources */,
+				4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -70,7 +70,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = ShowDetailViewController(nibName: "ShowDetailViewController", bundle: nil)
+        let vc = ShowDetailViewController(nibName: ShowDetailViewController.nibName, bundle: nil)
         vc.show = shows?[indexPath.row]
 
         navigationController?.pushViewController(vc, animated: true)

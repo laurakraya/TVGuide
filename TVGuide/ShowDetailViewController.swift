@@ -1,6 +1,9 @@
 import UIKit
 
-class ShowDetailViewController: UIViewController {
+class ShowDetailViewController: UIViewController, NibLoadableView {
+    
+    static var nibName: String { "ShowDetailViewController" }
+
     
     var show: Show?
     var episodes = [Episode]()
