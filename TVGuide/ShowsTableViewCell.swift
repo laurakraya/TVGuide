@@ -11,7 +11,6 @@ class ShowsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layoutIfNeeded()
-        // Initialization code
     }
     
     func setup(show: Show) {

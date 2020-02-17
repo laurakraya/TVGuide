@@ -6,17 +6,10 @@ struct Episode: Codable {
     let name: String?
     let season, number: Int?
     let airdate: String?
-    //let airtime: Airtime
-    //let airstamp: Date
     let runtime: Int?
     let image: EpisodeImage?
     let summary: String?
     let links: EpisodeLinks?
-
-//    enum CodingKeys: String, CodingKey {
-//        case id, url, name, season, number, airdate, airtime, airstamp, runtime, image, summary
-//        case links = "_links"
-//    }
     
     enum CodingKeys: String, CodingKey {
         case id, url, name, season, number, airdate, runtime, image, summary
