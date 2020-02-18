@@ -26,11 +26,16 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     func fetchEpisodes() {
         let networkManager = NetworkManager()
-        networkManager.getEpisodeList(id: show?.id) { (showsList) in
-            guard let episodes = showsList else {
+        networkManager.getEpisodeList(id: show?.id) { (episodesList) in
+            guard let episodesListDTO = episodesList else {
                 return
             }
-            self.episodes = episodes
+            
+            for episodeDTO in episodesListDTO {
+                let episode = EpisodeDTOMapper.map(episodeDTO)
+                self.episodes.append(episode)
+            }
+            
             self.episodeAmountLabel.text = "\(self.episodes.count)"
         }
     }
@@ -43,7 +48,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         
         showTitle.text = show.name
         
-        let url = URL(string: show.image.original)
+        let url = URL(string: show.image)
         showImage.downloadImage(from: url!)
         
         

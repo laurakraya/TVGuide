@@ -17,9 +17,13 @@
 		4A81868C23EA123700965294 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */; };
 		4AB0381C23EDF303009B962A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0381B23EDF303009B962A /* NetworkManager.swift */; };
 		4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */; };
+		4ABBDAC723FB0A2700FD0C9B /* ShowDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBDAC623FB0A2700FD0C9B /* ShowDTO.swift */; };
+		4ABBDAC923FB0A3400FD0C9B /* EpisodeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBDAC823FB0A3400FD0C9B /* EpisodeDTO.swift */; };
+		4ABBDACC23FB0D8B00FD0C9B /* ShowDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBDACB23FB0D8B00FD0C9B /* ShowDTOMapper.swift */; };
 		4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCA97623F1C83800D23BD4 /* Show.swift */; };
 		4ACCA97A23F1C97C00D23BD4 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */; };
 		4ACCA97B23F1C97C00D23BD4 /* ShowDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */; };
+		4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF98B523FC5F2C0016AB0D /* EpisodeDTOMapper.swift */; };
 		7216FAF2964D67211FD31AD2 /* Pods_TVGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F200D1DA1AC11756BD29BC /* Pods_TVGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +40,13 @@
 		4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowsTableViewCell.xib; path = TVGuide/ShowsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		4AB0381B23EDF303009B962A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		4ABBDAC623FB0A2700FD0C9B /* ShowDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDTO.swift; sourceTree = "<group>"; };
+		4ABBDAC823FB0A3400FD0C9B /* EpisodeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDTO.swift; sourceTree = "<group>"; };
+		4ABBDACB23FB0D8B00FD0C9B /* ShowDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDTOMapper.swift; sourceTree = "<group>"; };
 		4ACCA97623F1C83800D23BD4 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowDetailViewController.xib; sourceTree = "<group>"; };
+		4ADF98B523FC5F2C0016AB0D /* EpisodeDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDTOMapper.swift; sourceTree = "<group>"; };
 		619B47045B800A1A28629F97 /* Pods-TVGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVGuide.release.xcconfig"; path = "Target Support Files/Pods-TVGuide/Pods-TVGuide.release.xcconfig"; sourceTree = "<group>"; };
 		93F200D1DA1AC11756BD29BC /* Pods_TVGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF720F37295F751E24B2A067 /* Pods-TVGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVGuide.debug.xcconfig"; path = "Target Support Files/Pods-TVGuide/Pods-TVGuide.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,9 +93,12 @@
 		4A81866323E9F2C000965294 /* TVGuide */ = {
 			isa = PBXGroup;
 			children = (
+				4ABBDACA23FB0D7100FD0C9B /* Mappers */,
+				4ABBDAC523FB09DF00FD0C9B /* DTOs */,
+				4A81867C23E9F32B00965294 /* Models */,
+				4ABBDAC423FB098900FD0C9B /* Repositories */,
 				4ABBDAC123FAFA2900FD0C9B /* Extensions */,
 				4AB0381A23EDF2D1009B962A /* Rest */,
-				4A81867C23E9F32B00965294 /* Models */,
 				4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */,
 				4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */,
 				4A81867823E9F31E00965294 /* ShowsViewController.swift */,
@@ -125,6 +136,31 @@
 				4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4ABBDAC423FB098900FD0C9B /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		4ABBDAC523FB09DF00FD0C9B /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				4ABBDAC623FB0A2700FD0C9B /* ShowDTO.swift */,
+				4ABBDAC823FB0A3400FD0C9B /* EpisodeDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		4ABBDACA23FB0D7100FD0C9B /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				4ABBDACB23FB0D8B00FD0C9B /* ShowDTOMapper.swift */,
+				4ADF98B523FC5F2C0016AB0D /* EpisodeDTOMapper.swift */,
+			);
+			path = Mappers;
 			sourceTree = "<group>";
 		};
 		DF51C544605555BA6FC8608E /* Pods */ = {
@@ -256,9 +292,13 @@
 				4AB0381C23EDF303009B962A /* NetworkManager.swift in Sources */,
 				4ACCA97A23F1C97C00D23BD4 /* ShowDetailViewController.swift in Sources */,
 				4A81868523E9F61200965294 /* Episode.swift in Sources */,
+				4ABBDACC23FB0D8B00FD0C9B /* ShowDTOMapper.swift in Sources */,
 				4A81868C23EA123700965294 /* ShowsTableViewCell.swift in Sources */,
+				4ABBDAC723FB0A2700FD0C9B /* ShowDTO.swift in Sources */,
+				4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */,
 				4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */,
 				4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */,
+				4ABBDAC923FB0A3400FD0C9B /* EpisodeDTO.swift in Sources */,
 				4A81867A23E9F31E00965294 /* ShowsViewController.swift in Sources */,
 				4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */,
 			);

@@ -2,7 +2,7 @@ import UIKit
 
 class ShowsViewController: UIViewController {
     
-    var shows: ShowList?
+    var shows = [Show]()
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -13,10 +13,14 @@ class ShowsViewController: UIViewController {
         let networkManager = NetworkManager()
         networkManager.getShows() { (showsList) in
             
-            guard let shows = showsList else {
+            guard let showListDTO = showsList else {
                 return
             }
-            self.shows = shows
+            
+            for showDTO in showListDTO {
+                let show = ShowDTOMapper.map(showDTO)
+                self.shows.append(show)
+            }
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -50,9 +54,9 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        guard let shows = shows else {
-           return 0
-        }
+//        guard let shows = shows else {
+//           return 0
+//        }
         return shows.count
     }
     
@@ -61,9 +65,11 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
-        if let show = shows?[indexPath.row] {
-            cell.setup(show: show)
-        }
+//        if let show = shows?[indexPath.row] {
+//            cell.setup(show: show)
+//        }
+        
+        cell.setup(show: shows[indexPath.row])
         
         return cell
     }
@@ -71,7 +77,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = ShowDetailViewController(nibName: ShowDetailViewController.nibName, bundle: nil)
-        vc.show = shows?[indexPath.row]
+        vc.show = shows[indexPath.row]
 
         navigationController?.pushViewController(vc, animated: true)
         
