@@ -17,11 +17,6 @@ class ShowsTableViewCell: UITableViewCell {
         name.text = "\(show.name) (\(releaseYearFromPremiered(show: show)))"
         name.font = UIFont.boldSystemFont(ofSize: 20)
         let ratingStr = show.rating
-//        let start = ratingStr.index(ratingStr.startIndex, offsetBy: 25)
-//        let end = ratingStr.index(ratingStr.endIndex, offsetBy: -2)
-//        let range = start..<end
-//
-//        let mySubstring = ratingStr[range]
         
         rating.text = "Rating: \(ratingStr)"
     }

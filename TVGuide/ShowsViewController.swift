@@ -54,9 +54,6 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-//        guard let shows = shows else {
-//           return 0
-//        }
         return shows.count
     }
     
@@ -64,10 +61,6 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
-        
-//        if let show = shows?[indexPath.row] {
-//            cell.setup(show: show)
-//        }
         
         cell.setup(show: shows[indexPath.row])
         
