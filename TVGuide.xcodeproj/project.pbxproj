@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A54584423FF22A7003B5EF1 /* ShowsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */; };
+		4A54584623FF2602003B5EF1 /* ShowDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */; };
 		4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81866423E9F2C000965294 /* AppDelegate.swift */; };
 		4A81866E23E9F2C200965294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866D23E9F2C200965294 /* Assets.xcassets */; };
 		4A81867123E9F2C200965294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866F23E9F2C200965294 /* LaunchScreen.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsPresenter.swift; sourceTree = "<group>"; };
+		4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailPresenter.swift; sourceTree = "<group>"; };
 		4A81866123E9F2C000965294 /* TVGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A81866423E9F2C000965294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A81866D23E9F2C200965294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,8 +40,8 @@
 		4A81867823E9F31E00965294 /* ShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
 		4A81867923E9F31E00965294 /* ShowsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowsViewController.xib; sourceTree = "<group>"; };
 		4A81868423E9F61100965294 /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Episode.swift; path = TVGuide/Models/Episode.swift; sourceTree = SOURCE_ROOT; };
-		4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowsTableViewCell.swift; path = TVGuide/ShowsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowsTableViewCell.xib; path = TVGuide/ShowsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowsTableViewCell.swift; path = TVGuide/Modules/Shows/ShowsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowsTableViewCell.xib; path = TVGuide/Modules/Shows/ShowsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		4AB0381B23EDF303009B962A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		4ABBDAC623FB0A2700FD0C9B /* ShowDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDTO.swift; sourceTree = "<group>"; };
@@ -72,6 +76,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4A54584723FF2969003B5EF1 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4A54584923FF2977003B5EF1 /* ShowDetail */,
+				4A54584823FF2970003B5EF1 /* Shows */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4A54584823FF2970003B5EF1 /* Shows */ = {
+			isa = PBXGroup;
+			children = (
+				4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */,
+				4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */,
+				4A81867823E9F31E00965294 /* ShowsViewController.swift */,
+				4A81867923E9F31E00965294 /* ShowsViewController.xib */,
+				4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */,
+			);
+			path = Shows;
+			sourceTree = "<group>";
+		};
+		4A54584923FF2977003B5EF1 /* ShowDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */,
+				4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */,
+				4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */,
+			);
+			path = ShowDetail;
+			sourceTree = "<group>";
+		};
 		4A81865823E9F2C000965294 = {
 			isa = PBXGroup;
 			children = (
@@ -93,18 +128,12 @@
 		4A81866323E9F2C000965294 /* TVGuide */ = {
 			isa = PBXGroup;
 			children = (
-				4ABBDACA23FB0D7100FD0C9B /* Mappers */,
-				4ABBDAC523FB09DF00FD0C9B /* DTOs */,
-				4A81867C23E9F32B00965294 /* Models */,
-				4ABBDAC423FB098900FD0C9B /* Repositories */,
-				4ABBDAC123FAFA2900FD0C9B /* Extensions */,
 				4AB0381A23EDF2D1009B962A /* Rest */,
-				4A81868823E9FB5900965294 /* ShowsTableViewCell.swift */,
-				4A81868923E9FB5900965294 /* ShowsTableViewCell.xib */,
-				4A81867823E9F31E00965294 /* ShowsViewController.swift */,
-				4A81867923E9F31E00965294 /* ShowsViewController.xib */,
-				4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */,
-				4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */,
+				4ABBDAC523FB09DF00FD0C9B /* DTOs */,
+				4ABBDACA23FB0D7100FD0C9B /* Mappers */,
+				4A81867C23E9F32B00965294 /* Models */,
+				4ABBDAC123FAFA2900FD0C9B /* Extensions */,
+				4A54584723FF2969003B5EF1 /* Modules */,
 				4A81866423E9F2C000965294 /* AppDelegate.swift */,
 				4A81866D23E9F2C200965294 /* Assets.xcassets */,
 				4A81866F23E9F2C200965294 /* LaunchScreen.storyboard */,
@@ -136,13 +165,6 @@
 				4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4ABBDAC423FB098900FD0C9B /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		4ABBDAC523FB09DF00FD0C9B /* DTOs */ = {
@@ -290,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB0381C23EDF303009B962A /* NetworkManager.swift in Sources */,
+				4A54584423FF22A7003B5EF1 /* ShowsPresenter.swift in Sources */,
 				4ACCA97A23F1C97C00D23BD4 /* ShowDetailViewController.swift in Sources */,
 				4A81868523E9F61200965294 /* Episode.swift in Sources */,
 				4ABBDACC23FB0D8B00FD0C9B /* ShowDTOMapper.swift in Sources */,
@@ -298,6 +321,7 @@
 				4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */,
 				4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */,
 				4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */,
+				4A54584623FF2602003B5EF1 /* ShowDetailPresenter.swift in Sources */,
 				4ABBDAC923FB0A3400FD0C9B /* EpisodeDTO.swift in Sources */,
 				4A81867A23E9F31E00965294 /* ShowsViewController.swift in Sources */,
 				4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */,
