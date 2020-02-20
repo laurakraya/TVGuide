@@ -48,19 +48,38 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         
         showTitle.text = show.name
         
-        let url = URL(string: show.image)
+        let url = URL(string: show.image ?? "no image")
         showImage.downloadImage(from: url!)
-        
-        
+
         setShowDescription(show: show)
-        typeLabel.text = show.type.rawValue
-        statusLabel.text = show.status.rawValue
-        setGenreLabel(show: show)
+        typeLabel.text = show.type ?? "n/a"
+        statusLabel.text = show.status ?? "n/a"
+        genresLabel.text = getGenresStrFromArr(show: show)
         releaseYear.text = releaseYearFromPremiered(show: show)
     }
     
+    func getGenresStrFromArr(show: Show) -> String {
+
+        var genresStr = ""
+
+        guard let genres = show.genres else {
+            return "n/a"
+         }
+
+         for g in genres {
+            if g != genres[0] {
+                genresStr += ", \(g)"
+            } else {
+                genresStr += g
+            }
+            
+         }
+
+        return genresStr
+    }
+    
     func setShowDescription(show: Show) {
-        let data = Data(show.summary.utf8)
+        let data = Data(show.summary?.utf8 ?? "n/a".utf8)
         if let attributedString = try? NSAttributedString(data: data,
                                                           options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
             showDescription.attributedText = attributedString
@@ -69,44 +88,15 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         }
     }
     
-    func setGenreLabel(show: Show) {
-        let genres = show.genres
-        var genresStr = ""
-        for genre in genres {
-            if genre == genres[0] {
-                genresStr += "\(genre.rawValue)"
-            } else {
-                genresStr += ", \(genre.rawValue)"
-            }
-        }
-        genresLabel.text = genresStr
-    }
-    
     func releaseYearFromPremiered(show: Show) -> String {
-        let str = "\(show.premiered)"
-        let start = str.index(str.startIndex, offsetBy: 0)
-        let end = str.index(str.endIndex, offsetBy: -6)
-        let range = start..<end
-        let releaseYear = String(str[range])
+        guard let date = show.premiered else {
+            return "n/a"
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: date)
 
-        return releaseYear
+        return yearString
     }
 
-}
-
-extension UIImageView {
-   func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-   }
-   func downloadImage(from url: URL) {
-      getData(from: url) {
-         data, response, error in
-         guard let data = data, error == nil else {
-            return
-         }
-         DispatchQueue.main.async() {
-            self.image = UIImage(data: data)
-         }
-      }
-   }
 }

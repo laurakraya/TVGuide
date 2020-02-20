@@ -5,33 +5,20 @@ struct ShowDTOMapper {
   static func map(_ dto: ShowDTO) -> Show {
     
     return Show(
-                id: dto.id!,
-                name: dto.name ?? "n/a",
-                type: TypeEnum(rawValue: dto.type?.rawValue ?? "n/a") ?? .unknown,
-                language: Language(rawValue: dto.language?.rawValue ?? "n/a") ?? .unknown,
-                genres: resolveGenres(genresDTO: dto.genres ?? [GenreDTO]()),
-                status: Status(rawValue: dto.status?.rawValue ?? "n/a") ?? .unknown,
-                premiered: dto.premiered ?? "n/a",
+                id: dto.id,
+                name: dto.name,
+                type: dto.type,
+                language: dto.language,
+                genres: dto.genres,
+                status: dto.status,
+                premiered: premieredToDate(premiered: dto.premiered),
                 rating: formatRating(ratingDTO: dto.rating),
-                image: dto.image?.medium ?? "no image",
-                summary: dto.summary ?? "n/a"
+                image: dto.image?.medium,
+                summary: dto.summary
     )
   }
     
-    static func resolveGenres(genresDTO: [GenreDTO]) -> [Genre] {
-        
-        var genres = [Genre]()
-        
-        for g in genresDTO {
-            if let genre = Genre(rawValue: g.rawValue) {
-               genres.append(genre)
-            }
-        }
-        
-        return genres
-    }
-    
-    static func formatRating(ratingDTO: RatingDTO?) -> String {
+    static func formatRating(ratingDTO: RatingDTO?) -> String? {
         
         if let rating = ratingDTO?.average {
             
@@ -39,7 +26,22 @@ struct ShowDTOMapper {
             
             return ratingStr
         }
-        return "n/a"
+        return nil
+    }
+    
+    static func premieredToDate(premiered: String?) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let premieredStr = premiered else {
+            return nil
+        }
+        
+        let date = dateFormatter.date(from: premieredStr)
+        
+        return date
     }
 }
 

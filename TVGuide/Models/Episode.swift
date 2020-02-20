@@ -1,15 +1,15 @@
 import Foundation
 
 struct Episode {
-    let id: Int
-    let url: String
-    let name: String
-    let season, number: String
-    let airdate: String
-    let runtime: String
-    let image: String
-    let summary: String
-    let links: EpisodeLinks
+    let id: Int?
+    let url: String?
+    let name: String?
+    let season, number: String?
+    let airdate: String?
+    let runtime: String?
+    let image: String?
+    let summary: String?
+    let links: EpisodeLinks?
 }
 
 enum Airtime: String {
@@ -19,13 +19,13 @@ enum Airtime: String {
 }
 
 struct EpisodeImage {
-    let medium, original: String
+    let medium, original: String?
 }
 
 struct EpisodeLinks {
-    let linksSelf: SelfClass
+    let linksSelf: SelfClass?
 }
 
 struct SelfClass {
-    let href: String
+    let href: String?
 }

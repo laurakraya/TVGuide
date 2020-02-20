@@ -5,10 +5,10 @@ struct ShowDTO: Codable {
     let id: Int?
     let url: String?
     let name: String?
-    let type: TypeEnumDTO?
-    let language: LanguageDTO?
-    let genres: [GenreDTO]?
-    let status: StatusDTO?
+    let type: String?
+    let language: String?
+    let genres: [String]?
+    let status: String?
     let runtime: Int?
     let premiered: String?
     let officialSite: String?
@@ -27,7 +27,6 @@ struct ShowDTO: Codable {
         case links = "_links"
     }
 }
-
 // MARK: - Externals
 struct ExternalsDTO: Codable {
     let tvrage: Int?
@@ -35,39 +34,9 @@ struct ExternalsDTO: Codable {
     let imdb: String?
 }
 
-enum GenreDTO: String, Codable {
-    case action = "Action"
-    case adventure = "Adventure"
-    case anime = "Anime"
-    case comedy = "Comedy"
-    case crime = "Crime"
-    case drama = "Drama"
-    case espionage = "Espionage"
-    case family = "Family"
-    case fantasy = "Fantasy"
-    case history = "History"
-    case horror = "Horror"
-    case legal = "Legal"
-    case medical = "Medical"
-    case music = "Music"
-    case mystery = "Mystery"
-    case romance = "Romance"
-    case scienceFiction = "Science-Fiction"
-    case sports = "Sports"
-    case supernatural = "Supernatural"
-    case thriller = "Thriller"
-    case war = "War"
-    case western = "Western"
-}
-
 // MARK: - Image
 struct ImageDTO: Codable {
     let medium, original: String?
-}
-
-enum LanguageDTO: String, Codable {
-    case english = "English"
-    case japanese = "Japanese"
 }
 
 // MARK: - Links
@@ -131,7 +100,7 @@ struct RatingDTO: Codable {
 
 // MARK: - Schedule
 struct ScheduleDTO: Codable {
-    let time: TimeDTO?
+    let time: String?
     let days: [DayDTO]?
 }
 
@@ -143,36 +112,6 @@ enum DayDTO: String, Codable {
     case thursday = "Thursday"
     case tuesday = "Tuesday"
     case wednesday = "Wednesday"
-}
-
-enum TimeDTO: String, Codable {
-    case empty = ""
-    case the0900 = "09:00"
-    case the1200 = "12:00"
-    case the1300 = "13:00"
-    case the1910 = "19:10"
-    case the2000 = "20:00"
-    case the2030 = "20:30"
-    case the2100 = "21:00"
-    case the2130 = "21:30"
-    case the2200 = "22:00"
-    case the2230 = "22:30"
-    case the2300 = "23:00"
-    case the2330 = "23:30"
-}
-
-enum StatusDTO: String, Codable {
-    case ended = "Ended"
-    case running = "Running"
-    case toBeDetermined = "To Be Determined"
-}
-
-enum TypeEnumDTO: String, Codable {
-    case animation = "Animation"
-    case documentary = "Documentary"
-    case reality = "Reality"
-    case scripted = "Scripted"
-    case talkShow = "Talk Show"
 }
 
 typealias ShowListDTO = [ShowDTO]?

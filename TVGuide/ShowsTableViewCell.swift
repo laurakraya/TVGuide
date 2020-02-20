@@ -14,21 +14,31 @@ class ShowsTableViewCell: UITableViewCell {
     }
     
     func setup(show: Show) {
-        name.text = "\(show.name) (\(releaseYearFromPremiered(show: show)))"
-        name.font = UIFont.boldSystemFont(ofSize: 20)
-        let ratingStr = show.rating
         
-        rating.text = "Rating: \(ratingStr)"
+        if let showName = show.name {
+            name.text = "\(showName) (\(releaseYearFromPremiered(show: show)))"
+        } else {
+            name.text = "n/a"
+        }
+        name.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        if let showRating = show.rating {
+           rating.text = "Rating: \(showRating)"
+        } else {
+            rating.text = "Rating: n/a"
+        }
+        
     }
     
     func releaseYearFromPremiered(show: Show) -> String {
-        let str = "\(show.premiered)"
-        let start = str.index(str.startIndex, offsetBy: 0)
-        let end = str.index(str.endIndex, offsetBy: -6)
-        let range = start..<end
-        let releaseYear = String(str[range])
+        guard let date = show.premiered else {
+            return "n/a"
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: date)
 
-        return releaseYear
+        return yearString
     }
         
 }
