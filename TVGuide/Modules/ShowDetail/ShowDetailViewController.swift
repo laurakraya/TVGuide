@@ -7,6 +7,8 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     var show: Show?
     var episodes = [Episode]()
+    
+    private let presenter: ShowDetailPresenter
 
     @IBOutlet weak var showTitle: UILabel!
     @IBOutlet weak var showImage: UIImageView!
@@ -17,45 +19,35 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var episodeAmountLabel: UILabel!
     
+    init(presenter: ShowDetailPresenter) {
+        self.presenter = presenter
+        super.init(nibName: "ShowDetailViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchEpisodes()
-        setup()
+        presenter.view = self
+        presenter.viewDidLoad()
     }
     
-    func fetchEpisodes() {
-        let networkManager = NetworkManager()
-        networkManager.getEpisodeList(id: show?.id) { (episodesList) in
-            guard let episodesListDTO = episodesList else {
-                return
-            }
-            
-            for episodeDTO in episodesListDTO {
-                let episode = EpisodeDTOMapper.map(episodeDTO)
-                self.episodes.append(episode)
-            }
-            
-            self.episodeAmountLabel.text = "\(self.episodes.count)"
-        }
-    }
-    
-    func setup() {
-        
-        guard let show = self.show else {
-            return
-        }
-        
+    func setupShowInfo(show: Show) {
         showTitle.text = show.name
-        
         let url = URL(string: show.image ?? "no image")
         showImage.downloadImage(from: url!)
-
         setShowDescription(show: show)
-        typeLabel.text = show.type ?? "n/a"
-        statusLabel.text = show.status ?? "n/a"
+        typeLabel.text = show.type
+        statusLabel.text = show.status
         genresLabel.text = getGenresStrFromArr(show: show)
         releaseYear.text = releaseYearFromPremiered(show: show)
+    }
+    
+    func setupEpisodeInfo(episodes: [Episode]) {
+        episodeAmountLabel.text = "\(episodes.count)"
     }
     
     func getGenresStrFromArr(show: Show) -> String {
@@ -97,6 +89,18 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         let yearString = dateFormatter.string(from: date)
 
         return yearString
+    }
+
+}
+
+extension ShowDetailViewController: ShowDetailPresenterProtocol {
+
+    func displayShow(show: Show) {
+        setupShowInfo(show: show)
+    }
+
+    func displayEpisodes(episodes: [Episode]) {
+        setupEpisodeInfo(episodes: episodes)
     }
 
 }

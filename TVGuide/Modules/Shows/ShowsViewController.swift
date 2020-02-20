@@ -3,30 +3,27 @@ import UIKit
 class ShowsViewController: UIViewController {
     
     var shows = [Show]()
+    private let presenter: ShowsPresenter
     @IBOutlet var tableView: UITableView!
+    
+    init(presenter: ShowsPresenter) {
+        self.presenter = presenter
+        super.init(nibName: "ShowsViewController", bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.view = self
         configureTableView()
-        
-        let networkManager = NetworkManager()
-        networkManager.getShows() { (showsList) in
-            
-            guard let showListDTO = showsList else {
-                return
-            }
-            
-            for showDTO in showListDTO {
-                let show = ShowDTOMapper.map(showDTO)
-                self.shows.append(show)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.getShows()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,13 +66,23 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = ShowDetailViewController(nibName: ShowDetailViewController.nibName, bundle: nil)
-        vc.show = shows[indexPath.row]
+        let show = shows[indexPath.row]
 
-        navigationController?.pushViewController(vc, animated: true)
+        presenter.pushDetailVC(show, from: self)
         
     }
-    
-    
-    
+
+}
+
+extension ShowsViewController: ShowsPresenterToShowsVC {
+
+    func displayShows(_ shows: [Show]) {
+
+        self.shows = shows
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+
 }
