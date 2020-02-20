@@ -10,7 +10,7 @@ struct ShowDTO: Codable {
     let genres: [String]?
     let status: String?
     let runtime: Int?
-    let premiered: String?
+    let premiered: Date?
     let officialSite: String?
     let schedule: ScheduleDTO?
     let rating: RatingDTO?

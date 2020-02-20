@@ -3,12 +3,18 @@ import Alamofire
 
 class NetworkManager {
 
+    let dateFormat = "yyyy-MM-dd"
+
     func getShows(completion: @escaping ([ShowDTO]?) -> Void) {
         let urlString = "http://api.tvmaze.com/shows"
         AF.request(urlString).response { response in
             guard let data = response.data else { return }
             do {
-                let showsList = try JSONDecoder().decode(ShowListDTO.self, from: data)
+                let decoder = JSONDecoder()
+                let formatter = DateFormatter()
+                formatter.dateFormat = self.dateFormat
+                decoder.dateDecodingStrategy = .formatted(formatter)
+                let showsList = try decoder.decode(ShowListDTO.self, from: data)
                 completion(showsList)
             } catch let error {
                 print(error)
@@ -24,7 +30,11 @@ class NetworkManager {
             AF.request(urlString).response { response in
                 guard let data = response.data else { return }
                 do {
-                    let episodeList = try JSONDecoder().decode(EpisodeListDTO.self, from: data)
+                    let decoder = JSONDecoder()
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = self.dateFormat
+                    decoder.dateDecodingStrategy = .formatted(formatter)
+                    let episodeList = try decoder.decode(EpisodeListDTO.self, from: data)
                     completion(episodeList)
                 } catch let error {
                     print(error)

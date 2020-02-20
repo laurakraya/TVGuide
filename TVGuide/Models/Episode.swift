@@ -5,7 +5,7 @@ struct Episode {
     let url: String?
     let name: String?
     let season, number: String?
-    let airdate: String?
+    let airdate: Date?
     let runtime: String?
     let image: String?
     let summary: String?

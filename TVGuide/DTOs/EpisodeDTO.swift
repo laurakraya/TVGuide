@@ -5,7 +5,7 @@ struct EpisodeDTO: Codable {
     let url: String?
     let name: String?
     let season, number: Int?
-    let airdate: String?
+    let airdate: Date?
     let runtime: Int?
     let image: EpisodeImageDTO?
     let summary: String?
@@ -15,11 +15,6 @@ struct EpisodeDTO: Codable {
         case id, url, name, season, number, airdate, runtime, image, summary
         case links = "_links"
     }
-}
-
-enum AirtimeDTO: String, Codable {
-    case the2100 = "21:00"
-    case the2200 = "22:00"
 }
 
 struct EpisodeImageDTO: Codable {

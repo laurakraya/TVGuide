@@ -10,7 +10,7 @@ struct EpisodeDTOMapper {
         name: dto.name,
         season: "\(dto.season)" ,
         number: "\(dto.number)" ,
-        airdate: "\(dto.airdate)" ,
+        airdate: dto.airdate,
         runtime: "\(dto.runtime)" ,
         image: dto.image?.original,
         summary: dto.summary,

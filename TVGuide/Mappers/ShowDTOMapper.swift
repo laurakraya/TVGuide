@@ -11,7 +11,7 @@ struct ShowDTOMapper {
                 language: dto.language,
                 genres: dto.genres,
                 status: dto.status,
-                premiered: premieredToDate(premiered: dto.premiered),
+                premiered: dto.premiered,
                 rating: formatRating(ratingDTO: dto.rating),
                 image: dto.image?.medium,
                 summary: dto.summary
@@ -29,19 +29,5 @@ struct ShowDTOMapper {
         return nil
     }
     
-    static func premieredToDate(premiered: String?) -> Date? {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let premieredStr = premiered else {
-            return nil
-        }
-        
-        let date = dateFormatter.date(from: premieredStr)
-        
-        return date
-    }
 }
 
