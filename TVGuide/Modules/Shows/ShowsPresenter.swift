@@ -3,7 +3,7 @@ import UIKit
 
 protocol ShowsPresenterToShowsVC: UIViewController {
 
-    func displayShows(_ shows: [Show])
+    func displayShows(_ shows: [ShowPresentable])
 
 }
 
@@ -11,6 +11,7 @@ class ShowsPresenter {
 
     weak var view: ShowsPresenterToShowsVC?
     var shows = [Show]()
+    var showsPresentables = [ShowPresentable]()
 
     init() {
 
@@ -29,11 +30,72 @@ class ShowsPresenter {
                 self.shows.append(show)
             }
 
-            self.view?.displayShows(self.shows)
+            self.ShowstoSPresentables(shows: self.shows)
+            self.view?.displayShows(self.showsPresentables)
         }
     }
     
-    func pushDetailVC(_ show: Show, from view: UIViewController) {
+    func ShowstoSPresentables(shows: [Show]) {
+        var sp = [ShowPresentable]()
+        
+        for show in shows {
+            let s = mapShowtoSP(show)
+            sp.append(s)
+        }
+        
+        self.showsPresentables = sp
+    }
+    
+    func mapShowtoSP (_ show: Show) -> ShowPresentable {
+      
+      return ShowPresentable(
+                    id: show.id!,
+                    name: show.name ?? "n/a",
+                    type: show.type ?? "n/a",
+                    language: show.language ?? "n/a",
+                    genres: getStrFromArrOfStr(show.genres),
+                    status: show.status ?? "n/a",
+                    releaseYear: releaseYearFromPremiered(show.premiered),
+                    rating: show.rating ?? "n/a",
+                    image: show.image ?? "no image",
+                    summary: show.summary ?? "n/a"
+      )
+        
+    }
+    
+    func getStrFromArrOfStr(_ strArr: [String]?) -> String {
+
+        var resultStr = ""
+
+        guard let sa = strArr else {
+            return "n/a"
+         }
+
+         for s in sa {
+            
+            if s != sa[0] {
+                resultStr += ", \(s)"
+            } else {
+                resultStr += s
+            }
+            
+         }
+
+        return resultStr
+    }
+    
+    func releaseYearFromPremiered(_ premiered: Date?) -> String {
+        guard let date = premiered else {
+            return "n/a"
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: date)
+
+        return yearString
+    }
+    
+    func pushDetailVC(_ show: ShowPresentable, from view: UIViewController) {
 
         guard let navigation = view.navigationController else {
             return
