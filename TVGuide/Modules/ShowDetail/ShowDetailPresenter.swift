@@ -21,7 +21,6 @@ class ShowDetailPresenter {
         self.show = show
     }
 
-    //setup on init
     public func viewDidLoad() {
         guard let show = self.show else {
             return
@@ -45,6 +44,7 @@ class ShowDetailPresenter {
     }
 
     func getEpisodes() {
+        
         let networkManager = NetworkManager()
         networkManager.getEpisodeList(id: show?.id) { (episodesList) in
 
@@ -59,59 +59,20 @@ class ShowDetailPresenter {
             
             self.EpisodestoEPresentables(episodes: self.episodes)
             self.view?.displayEpisodes(episodes: self.episodesPresentables)
+            
         }
     }
     
     func EpisodestoEPresentables(episodes: [Episode]) {
+        
         var ep = [EpisodePresentable]()
         
-        for episode in episodes {
-            let e = mapEpisodetoEP(episode)
-            ep.append(e)
-        }
+        episodes.forEach({
+            ep.append(EpisodePresentable.init($0))
+        })
         
         self.episodesPresentables = ep
-    }
-    
-    func mapEpisodetoEP (_ episode: Episode) -> EpisodePresentable {
-      
-      return EpisodePresentable(
-                    id: episode.id!,
-                    url: episode.url ?? "",
-                    name: episode.name ?? "n/a",
-                    season: optionalIntToStr(episode.season) ?? "n/a",
-                    number: optionalIntToStr(episode.number) ?? "n/a",
-                    airdate: dateToStr(episode.airdate) ?? "n/a",
-                    runtime: optionalIntToStr(episode.runtime) ?? "n/a",
-                    image: episode.image,
-                    summary: episode.summary ?? "n/a",
-                    links: episode.links ?? "n/a"
-      )
         
-    }
-    
-    func dateToStr (_ date: Date?) -> String? {
-        
-        guard let date = date else {
-            return nil
-        }
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let str = formatter.string(from: date)
-        
-        return str
-    }
-    
-    func optionalIntToStr (_ int: Int?) -> String? {
-        
-        guard let integer = int else {
-            return nil
-        }
-        
-        let str = String(integer)
-        
-        return str
     }
 
 }

@@ -11,4 +11,17 @@ struct ShowPresentable {
     let rating: String
     let image: String
     let summary: String
+    
+    init(_ show: Show) {
+        id = show.id!
+        name = show.name ?? "n/a"
+        type = show.type ?? "n/a"
+        language = show.language ?? "n/a"
+        genres = StringManager.getStrFromArrOfStr(show.genres) ?? "n/a"
+        status = show.status ?? "n/a"
+        releaseYear = DateManager.yearStrFromDate(show.premiered) ?? "n/a"
+        rating = show.rating ?? "n/a"
+        image = show.image ?? "no image"
+        summary = show.summary ?? "n/a"
+    }
 }
