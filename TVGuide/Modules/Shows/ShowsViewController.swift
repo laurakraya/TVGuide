@@ -2,7 +2,7 @@ import UIKit
 
 class ShowsViewController: UIViewController {
     
-    var shows = [Show]()
+    var shows = [ShowPresentable]()
     private let presenter: ShowsPresenter
     @IBOutlet var tableView: UITableView!
     
@@ -76,7 +76,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ShowsViewController: ShowsPresenterToShowsVC {
 
-    func displayShows(_ shows: [Show]) {
+    func displayShows(_ shows: [ShowPresentable]) {
 
         self.shows = shows
 

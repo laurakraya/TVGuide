@@ -13,32 +13,12 @@ class ShowsTableViewCell: UITableViewCell {
         self.layoutIfNeeded()
     }
     
-    func setup(show: Show) {
+    func setup(show: ShowPresentable) {
         
-        if let showName = show.name {
-            name.text = "\(showName) (\(releaseYearFromPremiered(show: show)))"
-        } else {
-            name.text = "n/a"
-        }
+        name.text = show.name
         name.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        if let showRating = show.rating {
-           rating.text = "Rating: \(showRating)"
-        } else {
-            rating.text = "Rating: n/a"
-        }
-        
-    }
-    
-    func releaseYearFromPremiered(show: Show) -> String {
-        guard let date = show.premiered else {
-            return "n/a"
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy"
-        let yearString = dateFormatter.string(from: date)
+        rating.text = "Rating: \(show.rating)"
 
-        return yearString
     }
         
 }

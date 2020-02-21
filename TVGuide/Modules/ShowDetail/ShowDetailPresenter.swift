@@ -3,7 +3,7 @@ import UIKit
 
 protocol ShowDetailPresenterProtocol: UIViewController {
 
-    func displayShow(show: Show)
+    func displayShow(show: ShowPresentable, summary: NSAttributedString)
 
     func displayEpisodes(episodes: [Episode])
 
@@ -12,10 +12,11 @@ protocol ShowDetailPresenterProtocol: UIViewController {
 class ShowDetailPresenter {
 
     weak var view: ShowDetailPresenterProtocol?
-    var show: Show?
+    var show: ShowPresentable?
     var episodes = [Episode]()
+    var summary = NSAttributedString.init(string: "")
 
-    init(_ show: Show) {
+    init(_ show: ShowPresentable) {
         self.show = show
     }
 
@@ -24,8 +25,22 @@ class ShowDetailPresenter {
         guard let show = self.show else {
             return
         }
-        view?.displayShow(show: show)
+        self.summary = setShowDescription(show.summary)
+        view?.displayShow(show: show, summary: summary)
         getEpisodes()
+    }
+    
+    func setShowDescription(_ summary: String) -> NSAttributedString {
+        
+        var showDescription = NSAttributedString.init(string: " ")
+        
+        let data = Data(summary.utf8)
+        if let attributedString = try? NSAttributedString(data: data,
+                                                          options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            showDescription = attributedString
+        }
+
+        return showDescription
     }
 
     func getEpisodes() {

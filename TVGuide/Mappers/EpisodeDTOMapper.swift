@@ -8,13 +8,13 @@ struct EpisodeDTOMapper {
         id: dto.id,
         url: dto.url,
         name: dto.name,
-        season: "\(dto.season)" ,
-        number: "\(dto.number)" ,
+        season: dto.season,
+        number: dto.number,
         airdate: dto.airdate,
-        runtime: "\(dto.runtime)" ,
-        image: dto.image?.original,
+        runtime: dto.runtime,
+        image: dto.image?.medium,
         summary: dto.summary,
-        links: EpisodeLinks(linksSelf: SelfClass(href: dto.links?.linksSelf?.href))
+        links: dto.links?.linksSelf?.href
     )
   }
 }
