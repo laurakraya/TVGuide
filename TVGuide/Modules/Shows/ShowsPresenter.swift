@@ -46,6 +46,8 @@ class ShowsPresenter {
         self.showsPresentables = sp
     }
     
+    //init de ShowPresentable
+    //forEach $0
     func mapShowtoSP (_ show: Show) -> ShowPresentable {
       
       return ShowPresentable(

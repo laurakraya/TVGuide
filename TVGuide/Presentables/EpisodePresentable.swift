@@ -1,9 +1,13 @@
-//
-//  EpisodePresentable.swift
-//  TVGuide
-//
-//  Created by Laura Daniela Krayacich on 21/02/2020.
-//  Copyright © 2020 Laura Daniela Krayacich. All rights reserved.
-//
-
 import Foundation
+
+struct EpisodePresentable {
+    let id: Int?
+    let url: String?
+    let name: String?
+    let season, number: String?
+    let airdate: String?
+    let runtime: String?
+    let image: String?
+    let summary: String?
+    let links: String?
+}

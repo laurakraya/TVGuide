@@ -3,8 +3,6 @@ import UIKit
 class ShowDetailViewController: UIViewController, NibLoadableView {
     
     static var nibName: String { "ShowDetailViewController" }
-
-    var episodes = [Episode]()
     
     private let presenter: ShowDetailPresenter
 
@@ -45,7 +43,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         releaseYear.text = show.releaseYear
     }
     
-    func setupEpisodeInfo(episodes: [Episode]) {
+    func setupEpisodeInfo(episodes: [EpisodePresentable]) {
         episodeAmountLabel.text = "\(episodes.count)"
     }
     
@@ -57,7 +55,7 @@ extension ShowDetailViewController: ShowDetailPresenterProtocol {
         setupShowInfo(show: show, summary: summary)
     }
 
-    func displayEpisodes(episodes: [Episode]) {
+    func displayEpisodes(episodes: [EpisodePresentable]) {
         setupEpisodeInfo(episodes: episodes)
     }
 
