@@ -28,6 +28,8 @@
 		4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF98B523FC5F2C0016AB0D /* EpisodeDTOMapper.swift */; };
 		4AFBE6B02400135800A7EAE4 /* ShowPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFBE6AF2400135800A7EAE4 /* ShowPresentable.swift */; };
 		4AFBE6B42400280400A7EAE4 /* EpisodePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFBE6B32400280400A7EAE4 /* EpisodePresentable.swift */; };
+		4AFBE6B62400508100A7EAE4 /* StringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFBE6B52400508100A7EAE4 /* StringManager.swift */; };
+		4AFBE6B82400508E00A7EAE4 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFBE6B72400508E00A7EAE4 /* DateManager.swift */; };
 		7216FAF2964D67211FD31AD2 /* Pods_TVGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F200D1DA1AC11756BD29BC /* Pods_TVGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		4ADF98B523FC5F2C0016AB0D /* EpisodeDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDTOMapper.swift; sourceTree = "<group>"; };
 		4AFBE6AF2400135800A7EAE4 /* ShowPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPresentable.swift; sourceTree = "<group>"; };
 		4AFBE6B32400280400A7EAE4 /* EpisodePresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePresentable.swift; sourceTree = "<group>"; };
+		4AFBE6B52400508100A7EAE4 /* StringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringManager.swift; sourceTree = "<group>"; };
+		4AFBE6B72400508E00A7EAE4 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		619B47045B800A1A28629F97 /* Pods-TVGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVGuide.release.xcconfig"; path = "Target Support Files/Pods-TVGuide/Pods-TVGuide.release.xcconfig"; sourceTree = "<group>"; };
 		93F200D1DA1AC11756BD29BC /* Pods_TVGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF720F37295F751E24B2A067 /* Pods-TVGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVGuide.debug.xcconfig"; path = "Target Support Files/Pods-TVGuide/Pods-TVGuide.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,7 +141,7 @@
 				4ABBDACA23FB0D7100FD0C9B /* Mappers */,
 				4A81867C23E9F32B00965294 /* Models */,
 				4AFBE6AE2400133900A7EAE4 /* Presentables */,
-				4ABBDAC123FAFA2900FD0C9B /* Extensions */,
+				4ABBDAC123FAFA2900FD0C9B /* Utils */,
 				4A54584723FF2969003B5EF1 /* Modules */,
 				4A81866423E9F2C000965294 /* AppDelegate.swift */,
 				4A81866D23E9F2C200965294 /* Assets.xcassets */,
@@ -164,12 +168,14 @@
 			path = Rest;
 			sourceTree = "<group>";
 		};
-		4ABBDAC123FAFA2900FD0C9B /* Extensions */ = {
+		4ABBDAC123FAFA2900FD0C9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */,
+				4AFBE6B52400508100A7EAE4 /* StringManager.swift */,
+				4AFBE6B72400508E00A7EAE4 /* DateManager.swift */,
 			);
-			path = Extensions;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		4ABBDAC523FB09DF00FD0C9B /* DTOs */ = {
@@ -332,6 +338,7 @@
 				4A81868523E9F61200965294 /* Episode.swift in Sources */,
 				4ABBDACC23FB0D8B00FD0C9B /* ShowDTOMapper.swift in Sources */,
 				4A81868C23EA123700965294 /* ShowsTableViewCell.swift in Sources */,
+				4AFBE6B82400508E00A7EAE4 /* DateManager.swift in Sources */,
 				4ABBDAC723FB0A2700FD0C9B /* ShowDTO.swift in Sources */,
 				4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */,
 				4ACCA97723F1C83800D23BD4 /* Show.swift in Sources */,
@@ -341,6 +348,7 @@
 				4AFBE6B02400135800A7EAE4 /* ShowPresentable.swift in Sources */,
 				4A81867A23E9F31E00965294 /* ShowsViewController.swift in Sources */,
 				4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */,
+				4AFBE6B62400508100A7EAE4 /* StringManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
