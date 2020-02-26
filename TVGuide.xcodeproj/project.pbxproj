@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A1473372406C915005077E5 /* UrlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1473362406C915005077E5 /* UrlManager.swift */; };
 		4A54584423FF22A7003B5EF1 /* ShowsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */; };
 		4A54584623FF2602003B5EF1 /* ShowDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */; };
 		4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81866423E9F2C000965294 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A1473362406C915005077E5 /* UrlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlManager.swift; sourceTree = "<group>"; };
 		4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsPresenter.swift; sourceTree = "<group>"; };
 		4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailPresenter.swift; sourceTree = "<group>"; };
 		4A81866123E9F2C000965294 /* TVGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				4ABBDAC223FAFA5500FD0C9B /* NibLoadableView.swift */,
 				4AFBE6B52400508100A7EAE4 /* StringManager.swift */,
 				4AFBE6B72400508E00A7EAE4 /* DateManager.swift */,
+				4A1473362406C915005077E5 /* UrlManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1473372406C915005077E5 /* UrlManager.swift in Sources */,
 				4AB0381C23EDF303009B962A /* NetworkManager.swift in Sources */,
 				4AFBE6B42400280400A7EAE4 /* EpisodePresentable.swift in Sources */,
 				4A54584423FF22A7003B5EF1 /* ShowsPresenter.swift in Sources */,
