@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol ShowDetailPresenterProtocol: UIViewController {
+protocol ShowDetailPresenterProtocol: class {
 
     func displayShow(show: ShowPresentable, summary: NSAttributedString)
 
