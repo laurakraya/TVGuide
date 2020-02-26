@@ -32,7 +32,9 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     func setupShowInfo(show: ShowPresentable, summary: NSAttributedString) {
         showTitle.text = show.name
-        showImage.downloadImage(from: show.image)
+        if let img = show.image {
+            showImage.downloadImage(from: img)
+        }
         showDescription.attributedText = summary
         showDescription.font = UIFont.italicSystemFont(ofSize: 16.0)
         showDescription.textColor = UIColor.white
