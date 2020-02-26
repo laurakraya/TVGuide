@@ -6,16 +6,16 @@ class StringManager {
 
         var resultStr = ""
 
-        guard let sa = strArr else {
+        guard let stringArray = strArr else {
             return nil
          }
 
-         for s in sa {
+         for str in stringArray {
             
-            if s != sa[0] {
-                resultStr += ", \(s)"
+            if str != stringArray[0] {
+                resultStr += ", \(str)"
             } else {
-                resultStr += s
+                resultStr += str
             }
             
          }
