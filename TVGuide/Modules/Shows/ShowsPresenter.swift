@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol ShowsPresenterToShowsVC: UIViewController {
+protocol ShowsPresenterToShowsVC: class {
 
     func displayShows(_ shows: [ShowPresentable])
 
