@@ -22,25 +22,18 @@ class ShowDetailPresenter {
     }
 
     public func viewDidLoad() {
+        
         guard let show = self.show else {
             return
         }
-        self.summary = setShowDescription(show.summary)
+        
+        if let showDescription = StringManager.StrToAttributedStr(show.summary) {
+            self.summary = showDescription
+        }
+        
         view?.displayShow(show: show, summary: summary)
         getEpisodes()
-    }
-    
-    func setShowDescription(_ summary: String) -> NSAttributedString {
         
-        var showDescription = NSAttributedString.init(string: " ")
-        
-        let data = Data(summary.utf8)
-        if let attributedString = try? NSAttributedString(data: data,
-                                                          options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            showDescription = attributedString
-        }
-
-        return showDescription
     }
 
     func getEpisodes() {

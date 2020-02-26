@@ -23,7 +23,7 @@ class StringManager {
         return resultStr
     }
     
-    static func optionalIntToStr (_ int: Int?) -> String? {
+    static func optionalIntToStr(_ int: Int?) -> String? {
         
         guard let integer = int else {
             return nil
@@ -32,6 +32,23 @@ class StringManager {
         let str = String(integer)
         
         return str
+        
+    }
+    
+    static func StrToAttributedStr(_ str: String?) -> NSAttributedString? {
+        
+        guard let string = str else {
+            return nil
+        }
+        
+        var attrString = NSAttributedString.init(string: " ")
+        let data = Data(string.utf8)
+        if let attributedString = try? NSAttributedString(data: data,
+                                                          options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            attrString = attributedString
+        }
+
+        return attrString
         
     }
 }
