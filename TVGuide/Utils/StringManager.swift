@@ -9,16 +9,19 @@ class StringManager {
         guard let stringArray = strArr else {
             return nil
          }
-
-         for str in stringArray {
-            
-            if str != stringArray[0] {
-                resultStr += ", \(str)"
-            } else {
-                resultStr += str
-            }
-            
-         }
+        
+        var arrayStr = stringArray
+        
+        guard !arrayStr.isEmpty else {
+            return nil
+        }
+        
+        resultStr += arrayStr[0]
+        arrayStr.removeFirst()
+        
+        arrayStr.forEach({
+            resultStr += ", \($0)"
+        })
 
         return resultStr
     }
