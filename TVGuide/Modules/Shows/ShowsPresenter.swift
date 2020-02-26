@@ -20,7 +20,7 @@ class ShowsPresenter {
     func getShows() {
         
         let networkManager = NetworkManager()
-        networkManager.getShows() { (showsList) in
+        networkManager.getShows() { [unowned self] (showsList) in
             
             guard let showListDTO = showsList else {
                 return

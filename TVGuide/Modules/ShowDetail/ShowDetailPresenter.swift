@@ -39,7 +39,7 @@ class ShowDetailPresenter {
     func getEpisodes() {
         
         let networkManager = NetworkManager()
-        networkManager.getEpisodeList(id: show?.id) { (episodesList) in
+        networkManager.getEpisodeList(id: show?.id) { [unowned self] (episodesList) in
 
             guard let episodesListDTO = episodesList else {
                 return
