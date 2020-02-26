@@ -2,7 +2,6 @@ import UIKit
 
 class ShowsViewController: UIViewController {
     
-    var shows = [ShowPresentable]()
     private let presenter: ShowsPresenter
     @IBOutlet var tableView: UITableView!
     
@@ -51,7 +50,8 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return shows.count
+        return presenter.getShowsPresentables().count
+        
     }
     
     func tableView(_ tableView: UITableView,
@@ -59,14 +59,14 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
-        cell.setup(show: shows[indexPath.row])
+        cell.setup(show: presenter.getShowPresentableFromPositionInArr(indexPath.row))
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let show = shows[indexPath.row]
+        let show = presenter.getShowPresentableFromPositionInArr(indexPath.row)
 
         presenter.pushDetailVC(show, from: self)
         
@@ -76,9 +76,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ShowsViewController: ShowsPresenterToShowsVC {
 
-    func displayShows(_ shows: [ShowPresentable]) {
-
-        self.shows = shows
+    func displayShows() {
 
         DispatchQueue.main.async {
             self.tableView.reloadData()

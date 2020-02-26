@@ -3,7 +3,7 @@ import UIKit
 
 protocol ShowsPresenterToShowsVC: class {
 
-    func displayShows(_ shows: [ShowPresentable])
+    func displayShows()
 
 }
 
@@ -32,9 +32,21 @@ class ShowsPresenter {
             }
 
             self.ShowstoSPresentables(shows: self.shows)
-            self.view?.displayShows(self.showsPresentables)
+            self.view?.displayShows()
             
         }
+    }
+    
+    func getShowsPresentables() -> [ShowPresentable] {
+        
+        return self.showsPresentables
+        
+    }
+    
+    func getShowPresentableFromPositionInArr(_ pos: Int) -> ShowPresentable {
+        
+        return showsPresentables[pos]
+        
     }
     
     func ShowstoSPresentables(shows: [Show]) {
