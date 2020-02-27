@@ -19,10 +19,11 @@ class ShowDetailPresenter {
 
     init(_ show: ShowPresentable) {
         self.show = show
-        interactor.presenter = self
     }
 
     public func viewDidLoad() {
+        
+        interactor.presenter = self
         
         guard let show = self.show else {
             return

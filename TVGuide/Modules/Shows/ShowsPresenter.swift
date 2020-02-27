@@ -14,6 +14,10 @@ class ShowsPresenter {
     var showsPresentables = [ShowPresentable]()
 
     init() {
+        
+    }
+    
+    func viewDidLoad() {
         interactor.presenter = self
     }
     
