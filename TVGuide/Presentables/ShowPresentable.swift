@@ -1,7 +1,7 @@
 import Foundation
 
 struct ShowPresentable {
-    let id: Int
+    let id: Int?
     let name: String
     let type: String
     let language: String
@@ -13,7 +13,7 @@ struct ShowPresentable {
     let summary: String
     
     init(_ show: Show) {
-        id = show.id!
+        id = show.id
         name = show.name ?? "n/a"
         type = show.type ?? "n/a"
         language = show.language ?? "n/a"
