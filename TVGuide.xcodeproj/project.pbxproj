@@ -10,6 +10,7 @@
 		4A54584423FF22A7003B5EF1 /* ShowsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */; };
 		4A54584623FF2602003B5EF1 /* ShowDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */; };
 		4A5AE7D724083CA100E12496 /* ShowsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5AE7D624083CA100E12496 /* ShowsInteractor.swift */; };
+		4A5AE7D92408462200E12496 /* ShowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5AE7D82408462100E12496 /* ShowDetailInteractor.swift */; };
 		4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81866423E9F2C000965294 /* AppDelegate.swift */; };
 		4A81866E23E9F2C200965294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866D23E9F2C200965294 /* Assets.xcassets */; };
 		4A81867123E9F2C200965294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866F23E9F2C200965294 /* LaunchScreen.storyboard */; };
@@ -38,6 +39,7 @@
 		4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsPresenter.swift; sourceTree = "<group>"; };
 		4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailPresenter.swift; sourceTree = "<group>"; };
 		4A5AE7D624083CA100E12496 /* ShowsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsInteractor.swift; sourceTree = "<group>"; };
+		4A5AE7D82408462100E12496 /* ShowDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailInteractor.swift; sourceTree = "<group>"; };
 		4A81866123E9F2C000965294 /* TVGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A81866423E9F2C000965294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A81866D23E9F2C200965294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				4ACCA97823F1C97C00D23BD4 /* ShowDetailViewController.swift */,
 				4ACCA97923F1C97C00D23BD4 /* ShowDetailViewController.xib */,
 				4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */,
+				4A5AE7D82408462100E12496 /* ShowDetailInteractor.swift */,
 			);
 			path = ShowDetail;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				4ABBDAC923FB0A3400FD0C9B /* EpisodeDTO.swift in Sources */,
 				4AFBE6B02400135800A7EAE4 /* ShowPresentable.swift in Sources */,
 				4A5AE7D724083CA100E12496 /* ShowsInteractor.swift in Sources */,
+				4A5AE7D92408462200E12496 /* ShowDetailInteractor.swift in Sources */,
 				4A81867A23E9F31E00965294 /* ShowsViewController.swift in Sources */,
 				4ABBDAC323FAFA5500FD0C9B /* NibLoadableView.swift in Sources */,
 				4AFBE6B62400508100A7EAE4 /* StringManager.swift in Sources */,
