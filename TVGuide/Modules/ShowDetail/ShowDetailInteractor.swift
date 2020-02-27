@@ -21,8 +21,7 @@ class ShowDetailInteractor {
             }
             
             for episodeDTO in episodesListDTO {
-                let episode = EpisodeDTOMapper.map(episodeDTO)
-                episodes.append(episode)
+                episodes.append(EpisodeDTOMapper.map(episodeDTO))
             }
             
             self.presenter?.didRespond(episodes: episodes)

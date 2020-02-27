@@ -22,8 +22,7 @@ class ShowsInteractor {
             }
             
             for showDTO in showListDTO {
-                let show = ShowDTOMapper.map(showDTO)
-                shows.append(show)
+                shows.append(ShowDTOMapper.map(showDTO))
             }
             
             self?.presenter?.didRespond(shows: shows)
