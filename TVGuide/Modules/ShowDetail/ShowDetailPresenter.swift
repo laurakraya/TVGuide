@@ -11,14 +11,16 @@ protocol ShowDetailPresenterProtocol: class {
 
 class ShowDetailPresenter {
 
+    private let router: ShowDetailRouter
     private let interactor = ShowDetailInteractor()
     weak var view: ShowDetailPresenterProtocol?
     var show: ShowPresentable?
     var episodesPresentables = [EpisodePresentable]()
     var summary = NSAttributedString.init(string: "")
 
-    init(_ show: ShowPresentable) {
+    init(_ show: ShowPresentable, router: ShowDetailRouter) {
         self.show = show
+        self.router = router
     }
 
     public func viewDidLoad() {

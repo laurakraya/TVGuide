@@ -16,11 +16,9 @@ class ShowsRouter {
             return
         }
 
-        let presenter = ShowDetailPresenter(show)
+        let showDetail = ShowDetailRouter.start(show: show)
 
-        let controller = ShowDetailViewController(presenter: presenter)
-
-        navigation.pushViewController(controller, animated: true)
+        navigation.pushViewController(showDetail, animated: true)
         
     }
 }
