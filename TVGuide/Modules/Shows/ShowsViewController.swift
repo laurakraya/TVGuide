@@ -2,11 +2,10 @@ import UIKit
 
 class ShowsViewController: UIViewController {
     
-    private let presenter: ShowsPresenter
+    var presenter: ShowsPresenter?
     @IBOutlet var tableView: UITableView!
     
-    init(presenter: ShowsPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: "ShowsViewController", bundle: nil)
     }
 
@@ -16,14 +15,14 @@ class ShowsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
-        presenter.viewDidLoad()
+        presenter?.view = self
+        presenter?.viewDidLoad()
         configureTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter.getShows()
+        presenter?.getShows()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +50,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return presenter.getShowsPresentables().count
+        return presenter?.getShowsPresentables().count ?? 0
         
     }
     
@@ -60,16 +59,16 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
-        cell.setup(show: presenter.getShowPresentableFromPositionInArr(indexPath.row))
+        guard let show = presenter?.getShowPresentableFromPositionInArr(indexPath.row) else { return UITableViewCell() }
+        
+        cell.setup(show: show)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let show = presenter.getShowPresentableFromPositionInArr(indexPath.row)
 
-        presenter.pushShowDetail(show, from: self)
+        presenter?.pushShowDetail(indexPath.row)
         
     }
 

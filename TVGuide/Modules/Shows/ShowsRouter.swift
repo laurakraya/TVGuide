@@ -2,21 +2,15 @@ import UIKit
 
 class ShowsRouter {
     
-    static func start() -> UIViewController {
-        
-        let showsPresenter = ShowsPresenter(router: ShowsRouter())
-        
-        return ShowsViewController(presenter: showsPresenter)
-        
-    }
+    weak var view: UIViewController?
     
-    func routeToShowDetail(show: ShowPresentable, from view: UIViewController) {
+    func routeToShowDetail(show: ShowPresentable) {
         
-        guard let navigation = view.navigationController else {
-            return
-        }
+        guard let view = self.view else { return }
+        
+        guard let navigation = view.navigationController else { return }
 
-        let showDetail = ShowDetailRouter.start(show: show)
+        let showDetail = ShowDetailBuilder.buildShowDetail(show: show)
 
         navigation.pushViewController(showDetail, animated: true)
         

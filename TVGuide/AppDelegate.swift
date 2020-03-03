@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            
         window = UIWindow(frame: screenFrame)
        
-        let mainController = ShowsRouter.start()
+        let mainController = ShowsBuilder.buildShows()
        
         window?.rootViewController = UINavigationController(rootViewController: mainController)
        

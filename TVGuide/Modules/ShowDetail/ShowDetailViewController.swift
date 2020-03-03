@@ -4,7 +4,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     static var nibName: String { "ShowDetailViewController" }
     
-    private let presenter: ShowDetailPresenter
+    var presenter: ShowDetailPresenter?
 
     @IBOutlet weak var showTitle: UILabel!
     @IBOutlet weak var showImage: UIImageView!
@@ -15,8 +15,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var episodeAmountLabel: UILabel!
     
-    init(presenter: ShowDetailPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: "ShowDetailViewController", bundle: nil)
     }
     
@@ -26,8 +25,8 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
-        presenter.viewDidLoad()
+        presenter?.view = self
+        presenter?.viewDidLoad()
     }
     
     func setupShowInfo(show: ShowPresentable, summary: NSAttributedString) {

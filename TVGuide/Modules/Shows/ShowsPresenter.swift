@@ -9,13 +9,13 @@ protocol ShowsPresenterToShowsVC: class {
 
 class ShowsPresenter {
 
-    private let router: ShowsRouter
     private let interactor = ShowsInteractor()
     weak var view: ShowsPresenterToShowsVC?
+    weak var router: ShowsRouter?
     var showsPresentables = [ShowPresentable]()
 
-    init(router: ShowsRouter) {
-        self.router = router
+    init() {
+        
     }
     
     func viewDidLoad() {
@@ -52,9 +52,9 @@ class ShowsPresenter {
         
     }
     
-    func pushShowDetail(_ show: ShowPresentable, from view: UIViewController) {
+    func pushShowDetail(_ pos: Int) {
 
-        router.routeToShowDetail(show: show, from: view)
+        router?.routeToShowDetail(show: showsPresentables[pos])
 
     }
 
