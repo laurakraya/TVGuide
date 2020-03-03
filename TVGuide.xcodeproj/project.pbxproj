@@ -11,6 +11,7 @@
 		4A54584623FF2602003B5EF1 /* ShowDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */; };
 		4A5AE7D724083CA100E12496 /* ShowsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5AE7D624083CA100E12496 /* ShowsInteractor.swift */; };
 		4A5AE7D92408462200E12496 /* ShowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5AE7D82408462100E12496 /* ShowDetailInteractor.swift */; };
+		4A78A8B5240E96AF002AB27F /* ShowsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A78A8B4240E96AF002AB27F /* ShowsRouter.swift */; };
 		4A81866523E9F2C000965294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81866423E9F2C000965294 /* AppDelegate.swift */; };
 		4A81866E23E9F2C200965294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866D23E9F2C200965294 /* Assets.xcassets */; };
 		4A81867123E9F2C200965294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A81866F23E9F2C200965294 /* LaunchScreen.storyboard */; };
@@ -40,6 +41,7 @@
 		4A54584523FF2602003B5EF1 /* ShowDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailPresenter.swift; sourceTree = "<group>"; };
 		4A5AE7D624083CA100E12496 /* ShowsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsInteractor.swift; sourceTree = "<group>"; };
 		4A5AE7D82408462100E12496 /* ShowDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailInteractor.swift; sourceTree = "<group>"; };
+		4A78A8B4240E96AF002AB27F /* ShowsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsRouter.swift; sourceTree = "<group>"; };
 		4A81866123E9F2C000965294 /* TVGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A81866423E9F2C000965294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A81866D23E9F2C200965294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				4A81867923E9F31E00965294 /* ShowsViewController.xib */,
 				4A54584323FF22A7003B5EF1 /* ShowsPresenter.swift */,
 				4A5AE7D624083CA100E12496 /* ShowsInteractor.swift */,
+				4A78A8B4240E96AF002AB27F /* ShowsRouter.swift */,
 			);
 			path = Shows;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				4A81868523E9F61200965294 /* Episode.swift in Sources */,
 				4ABBDACC23FB0D8B00FD0C9B /* ShowDTOMapper.swift in Sources */,
 				4A81868C23EA123700965294 /* ShowsTableViewCell.swift in Sources */,
+				4A78A8B5240E96AF002AB27F /* ShowsRouter.swift in Sources */,
 				4AFBE6B82400508E00A7EAE4 /* DateManager.swift in Sources */,
 				4ABBDAC723FB0A2700FD0C9B /* ShowDTO.swift in Sources */,
 				4ADF98B623FC5F2C0016AB0D /* EpisodeDTOMapper.swift in Sources */,

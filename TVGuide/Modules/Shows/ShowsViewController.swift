@@ -69,7 +69,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let show = presenter.getShowPresentableFromPositionInArr(indexPath.row)
 
-        presenter.pushDetailVC(show, from: self)
+        presenter.pushShowDetail(show, from: self)
         
     }
 
