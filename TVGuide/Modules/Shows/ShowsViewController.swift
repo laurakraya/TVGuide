@@ -17,6 +17,7 @@ class ShowsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
+        presenter.viewDidLoad()
         configureTableView()
     }
     

@@ -9,32 +9,22 @@ protocol ShowsPresenterToShowsVC: class {
 
 class ShowsPresenter {
 
+    private let interactor = ShowsInteractor()
     weak var view: ShowsPresenterToShowsVC?
-    var shows = [Show]()
     var showsPresentables = [ShowPresentable]()
 
     init() {
-
+        
     }
-
+    
+    func viewDidLoad() {
+        interactor.presenter = self
+    }
+    
     func getShows() {
         
-        let networkManager = NetworkManager()
-        networkManager.getShows() { [unowned self] (showsList) in
-            
-            guard let showListDTO = showsList else {
-                return
-            }
-            
-            for showDTO in showListDTO {
-                let show = ShowDTOMapper.map(showDTO)
-                self.shows.append(show)
-            }
-
-            self.ShowstoSPresentables(shows: self.shows)
-            self.view?.displayShows()
-            
-        }
+        interactor.fetchShows()
+        
     }
     
     func getShowsPresentables() -> [ShowPresentable] {
@@ -75,4 +65,13 @@ class ShowsPresenter {
 
     }
 
+}
+
+extension ShowsPresenter: ShowsInteractorToShowsPresenter {
+    
+    func didRespond(shows: [Show]) {
+        ShowstoSPresentables(shows: shows)
+        view?.displayShows()
+    }
+    
 }

@@ -11,9 +11,9 @@ protocol ShowDetailPresenterProtocol: class {
 
 class ShowDetailPresenter {
 
+    private let interactor = ShowDetailInteractor()
     weak var view: ShowDetailPresenterProtocol?
     var show: ShowPresentable?
-    var episodes = [Episode]()
     var episodesPresentables = [EpisodePresentable]()
     var summary = NSAttributedString.init(string: "")
 
@@ -22,6 +22,8 @@ class ShowDetailPresenter {
     }
 
     public func viewDidLoad() {
+        
+        interactor.presenter = self
         
         guard let show = self.show else {
             return
@@ -32,28 +34,14 @@ class ShowDetailPresenter {
         }
         
         view?.displayShow(show: show, summary: summary)
-        getEpisodes()
+        getEpisodes(show)
         
     }
 
-    func getEpisodes() {
+    func getEpisodes(_ show: ShowPresentable) {
         
-        let networkManager = NetworkManager()
-        networkManager.getEpisodeList(id: show?.id) { [unowned self] (episodesList) in
-
-            guard let episodesListDTO = episodesList else {
-                return
-            }
-            
-            for episodeDTO in episodesListDTO {
-                let episode = EpisodeDTOMapper.map(episodeDTO)
-                self.episodes.append(episode)
-            }
-            
-            self.EpisodestoEPresentables(episodes: self.episodes)
-            self.view?.displayEpisodes(episodes: self.episodesPresentables)
-            
-        }
+        interactor.fetchEpisodes(show: show)
+        
     }
     
     func EpisodestoEPresentables(episodes: [Episode]) {
@@ -65,6 +53,17 @@ class ShowDetailPresenter {
         })
         
         self.episodesPresentables = ep
+        
+    }
+
+}
+
+extension ShowDetailPresenter: SDInteractorToSDPresenter {
+    
+    func didRespond(episodes: [Episode]) {
+        
+        EpisodestoEPresentables(episodes: episodes)
+        view?.displayEpisodes(episodes: self.episodesPresentables)
         
     }
 
