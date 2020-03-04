@@ -14,7 +14,7 @@ class ShowsTableViewCell: UITableViewCell {
     }
     
     func setup(show: ShowPresentable) {
-        
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
         name.text = show.name
         name.font = UIFont.boldSystemFont(ofSize: 20)
         rating.text = "Rating: \(show.rating)"
