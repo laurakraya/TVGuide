@@ -11,9 +11,10 @@ protocol ShowDetailPresenterProtocol: class {
 
 class ShowDetailPresenter {
 
-    private let interactor = ShowDetailInteractor()
     weak var view: ShowDetailPresenterProtocol?
-    weak var router: ShowDetailRouter?
+    
+    var interactor: ShowDetailInteractor?
+    var router: ShowDetailRouter?
     var show: ShowPresentable?
     var episodesPresentables = [EpisodePresentable]()
     var summary = NSAttributedString.init(string: "")
@@ -23,8 +24,6 @@ class ShowDetailPresenter {
     }
 
     public func viewDidLoad() {
-        
-        interactor.presenter = self
         
         guard let show = self.show else {
             return
@@ -41,7 +40,7 @@ class ShowDetailPresenter {
 
     func getEpisodes(_ show: ShowPresentable) {
         
-        interactor.fetchEpisodes(show: show)
+        interactor?.fetchEpisodes(show: show)
         
     }
     

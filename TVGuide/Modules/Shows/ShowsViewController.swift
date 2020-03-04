@@ -3,20 +3,11 @@ import UIKit
 class ShowsViewController: UIViewController {
     
     var presenter: ShowsPresenter?
-    @IBOutlet var tableView: UITableView!
     
-    init() {
-        super.init(nibName: "ShowsViewController", bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.view = self
-        presenter?.viewDidLoad()
         configureTableView()
     }
     
@@ -59,7 +50,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
-        guard let show = presenter?.getShowPresentableFromPositionInArr(indexPath.row) else { return UITableViewCell() }
+        guard let show = presenter?.getShowPresentableFromPositionInArr(indexPath.row) else { return cell }
         
         cell.setup(show: show)
         
@@ -67,7 +58,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    
         presenter?.pushShowDetail(indexPath.row)
         
     }

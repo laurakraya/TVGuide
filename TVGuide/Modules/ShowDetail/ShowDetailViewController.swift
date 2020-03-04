@@ -15,14 +15,6 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var episodeAmountLabel: UILabel!
     
-    init() {
-        super.init(nibName: "ShowDetailViewController", bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.view = self

@@ -9,22 +9,16 @@ protocol ShowsPresenterToShowsVC: class {
 
 class ShowsPresenter {
 
-    private let interactor = ShowsInteractor()
     weak var view: ShowsPresenterToShowsVC?
-    weak var router: ShowsRouter?
-    var showsPresentables = [ShowPresentable]()
-
-    init() {
-        
-    }
     
-    func viewDidLoad() {
-        interactor.presenter = self
-    }
+    var interactor: ShowsInteractor?
+    var router: ShowsRouter?
+    
+    var showsPresentables = [ShowPresentable]()
     
     func getShows() {
         
-        interactor.fetchShows()
+        interactor?.fetchShows()
         
     }
     
@@ -53,7 +47,7 @@ class ShowsPresenter {
     }
     
     func pushShowDetail(_ pos: Int) {
-
+        
         router?.routeToShowDetail(show: showsPresentables[pos])
 
     }

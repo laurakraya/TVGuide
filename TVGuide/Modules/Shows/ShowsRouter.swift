@@ -6,9 +6,7 @@ class ShowsRouter {
     
     func routeToShowDetail(show: ShowPresentable) {
         
-        guard let view = self.view else { return }
-        
-        guard let navigation = view.navigationController else { return }
+        guard let navigation = view?.navigationController else { return }
 
         let showDetail = ShowDetailBuilder.buildShowDetail(show: show)
 
