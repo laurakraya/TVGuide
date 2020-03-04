@@ -60,3 +60,6 @@ Correcciones en el PR:
 - El Router sólo debería ocuparse del flujo de la navegación, no de instanciar y devolver un controller. Para ello se agrega un Builder que se encargue de instanciar view controller, presenter y router, y  también de hacer las asignaciones correspondientes para relacionar dichas capas.
 - Al Router se le agrega una propiedad weak y opcional de tipo viewcontroller (que es asignada en el builder) para no tener que andar pasándola por parámetro.
 - El Presenter ya contiene el array de shows, de modo que en el didSelectRowAt del view controller, sólo necesitamos pasarle el indexPath.row, no un Show.
+- El interactor también se inicializa y asigna en el builder
+- Se arregla un problema de referencias entre presenter y vista (sólo uno de ellos debe tener una referencia weak para romper el strong reference cycle)
+- El presenter referencia al router y no viceversa, por lo tanto, la propiedad del presenter donde se referencia al router no necesita ser weak.
