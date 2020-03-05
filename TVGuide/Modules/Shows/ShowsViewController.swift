@@ -2,28 +2,18 @@ import UIKit
 
 class ShowsViewController: UIViewController {
     
-    private let presenter: ShowsPresenter
-    @IBOutlet var tableView: UITableView!
+    var presenter: ShowsPresenter?
     
-    init(presenter: ShowsPresenter) {
-        self.presenter = presenter
-        super.init(nibName: "ShowsViewController", bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
-        presenter.viewDidLoad()
         configureTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter.getShows()
+        presenter?.getShows()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +41,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return presenter.getShowsPresentables().count
+        return presenter?.getShowsPresentables().count ?? 0
         
     }
     
@@ -60,16 +50,16 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowsTableViewCell.reuseIdentifier, for: indexPath) as! ShowsTableViewCell
         
-        cell.setup(show: presenter.getShowPresentableFromPositionInArr(indexPath.row))
+        guard let show = presenter?.getShowPresentableFromPositionInArr(indexPath.row) else { return cell }
+        
+        cell.setup(show: show)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let show = presenter.getShowPresentableFromPositionInArr(indexPath.row)
-
-        presenter.pushDetailVC(show, from: self)
+    
+        presenter?.pushShowDetail(indexPath.row)
         
     }
 
