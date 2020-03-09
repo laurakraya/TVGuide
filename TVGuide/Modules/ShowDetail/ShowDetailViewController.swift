@@ -86,12 +86,9 @@ extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         let section = self.episodesBySeason[indexPath.section]
         let episode = section.value[indexPath.row]
-        cell.episodeTitle?.text = episode.name
         
-        // Table height to its content's size
         tableHeightConstraint.constant = tableView.contentSize.height
         view.layoutSubviews()
-        // Scroll height to it's content's size (stack view + table view)
         scrollView.contentSize = CGSize.init(width: self.view.frame.width, height: contentView.frame.height + tableView.contentSize.height)
         scrollView.layoutIfNeeded()
 
