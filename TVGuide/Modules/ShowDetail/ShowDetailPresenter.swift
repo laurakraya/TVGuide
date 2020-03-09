@@ -56,23 +56,13 @@ class ShowDetailPresenter {
         
     }
     
-    func printEpisodesBySeason(_ episodes: [EpisodePresentable]) {
+    func printEpisodesBySeason(_ episodes: [EpisodePresentable]) -> [(key: String, value: Array<EpisodePresentable>)] {
         
         let episodesBySeason = Dictionary(grouping: episodes, by: { $0.season! })
         
         let episodesBySeasonSorted = episodesBySeason.sorted { $0.0 < $1.0 } .map { $0 }
         
-        episodesBySeasonSorted.forEach({
-            print("------------------ Season \($0.key) -----------------")
-
-            $0.value.forEach({
-                if let episodeName = $0.name {
-                    print(episodeName)
-                }
-            })
-        })
-        
-        //PARA MAÑANA: CONTENT SIZE OF TABLE VIEW PARA PROBLEMAS DE SCROLL
+        return episodesBySeasonSorted
     }
 
 }
@@ -82,7 +72,6 @@ extension ShowDetailPresenter: SDInteractorToSDPresenter {
     func didRespond(episodes: [Episode]) {
         
         EpisodestoEPresentables(episodes: episodes)
-        printEpisodesBySeason(self.episodesPresentables)
         view?.displayEpisodes(episodes: self.episodesPresentables)
         
     }
