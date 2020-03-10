@@ -3,12 +3,20 @@ import UIKit
 class ShowsViewController: UIViewController {
     
     var presenter: ShowsPresenter?
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
     
     @IBOutlet var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        configureSearchController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,6 +41,15 @@ class ShowsViewController: UIViewController {
     func setTableViewDelegates() {
         tableView?.delegate = self
         tableView?.dataSource = self
+    }
+    
+    func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Shows"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
 
 }
@@ -63,6 +80,20 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 
+}
+
+extension ShowsViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        if isFiltering {
+            presenter?.searchShows(query: searchBar.text!)
+        } else {
+            presenter?.getShows()
+        }
+                
+    }
+    
 }
 
 extension ShowsViewController: ShowsPresenterToShowsVC {

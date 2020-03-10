@@ -55,7 +55,6 @@ class NetworkManager {
                     formatter.dateFormat = self.dateFormat
                     decoder.dateDecodingStrategy = .formatted(formatter)
                     let showsList = try decoder.decode(ShowSearchResultListDTO.self, from: data)
-                    print(showsList?.count)
                     completion(showsList)
                 } catch let error {
                     print(error)

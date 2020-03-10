@@ -46,11 +46,8 @@ class ShowsInteractor {
                    shows.append(ShowDTOMapper.map(showDTO))
                 }
             })
-            
-            print(shows.count)
-            shows.forEach({
-                print($0.name)
-            })
+
+            self?.presenter?.didRespond(shows: shows)
             
         }
     }
