@@ -59,6 +59,7 @@ extension ShowsPresenter: ShowsInteractorToShowsPresenter {
     func didRespond(shows: [Show]) {
         ShowstoSPresentables(shows: shows)
         view?.displayShows()
+        interactor?.searchShows("laura")
     }
     
 }
