@@ -34,6 +34,7 @@ class ShowsViewController: UIViewController {
         tableView.rowHeight = 150
         tableView.register(nib,
                            forCellReuseIdentifier: ShowsTableViewCell.reuseIdentifier)
+        tableView.tableFooterView = UIView()
     }
     
     func setTableViewDelegates() {
