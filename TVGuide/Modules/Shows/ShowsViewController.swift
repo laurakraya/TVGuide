@@ -3,20 +3,18 @@ import UIKit
 class ShowsViewController: UIViewController {
     
     var presenter: ShowsPresenter?
-    let searchController = UISearchController(searchResultsController: nil)
-    var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
-    }
-    var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
-    }
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    
+    var isSearchBarEmpty: Bool {
+      return searchBar.text?.isEmpty ?? true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        configureSearchController()
+        configureSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,13 +41,12 @@ class ShowsViewController: UIViewController {
         tableView?.dataSource = self
     }
     
-    func configureSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Shows"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+    func configureSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Shows"
+        searchBar.searchTextField.backgroundColor = UIColor.white
+        searchBar.searchTextField.textColor = .systemIndigo
+        searchBar.searchTextField.leftView?.tintColor = .systemIndigo
     }
 
 }
@@ -57,7 +54,7 @@ class ShowsViewController: UIViewController {
 extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return presenter?.getShowsPresentables().count ?? 0
         
     }
@@ -82,16 +79,15 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
-extension ShowsViewController: UISearchResultsUpdating {
+extension ShowsViewController: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        if isFiltering {
-            presenter?.searchShows(query: searchBar.text!)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if !isSearchBarEmpty {
+            presenter?.searchShows(query: searchText)
         } else {
             presenter?.getShows()
         }
-                
     }
     
 }

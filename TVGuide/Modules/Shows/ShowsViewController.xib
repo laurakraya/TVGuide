@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowsViewController" customModule="TVGuide" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="70l-us-BJr" id="BMh-Fg-Hvt"/>
                 <outlet property="tableView" destination="jsc-hY-wkf" id="Y5e-KP-Ylh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,8 +25,13 @@
                     <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="70l-us-BJr">
+                    <rect key="frame" x="8" y="117.5" width="398" height="56"/>
+                    <color key="barTintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jsc-hY-wkf">
-                    <rect key="frame" x="8" y="117.5" width="398" height="762.5"/>
+                    <rect key="frame" x="8" y="173.5" width="398" height="706.5"/>
                     <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,11 +41,14 @@
             <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jsc-hY-wkf" secondAttribute="trailing" constant="8" id="C9u-xk-d2i"/>
+                <constraint firstItem="70l-us-BJr" firstAttribute="top" secondItem="l8V-XP-It3" secondAttribute="bottom" constant="24" id="Lia-Q4-Isa"/>
                 <constraint firstItem="jsc-hY-wkf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="UIM-fM-ssg"/>
                 <constraint firstItem="l8V-XP-It3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="XLX-yS-TJO"/>
                 <constraint firstItem="l8V-XP-It3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="XOr-gv-ltE"/>
                 <constraint firstAttribute="bottom" secondItem="jsc-hY-wkf" secondAttribute="bottom" constant="16" id="bub-RL-iRF"/>
-                <constraint firstItem="jsc-hY-wkf" firstAttribute="top" secondItem="l8V-XP-It3" secondAttribute="bottom" constant="24" id="sqD-VC-Lf0"/>
+                <constraint firstItem="70l-us-BJr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="kdE-a2-2Vb"/>
+                <constraint firstItem="jsc-hY-wkf" firstAttribute="top" secondItem="70l-us-BJr" secondAttribute="bottom" id="sqD-VC-Lf0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="70l-us-BJr" secondAttribute="trailing" constant="8" id="tMc-mv-Ko0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="l8V-XP-It3" secondAttribute="trailing" constant="8" id="y0v-PE-djp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
