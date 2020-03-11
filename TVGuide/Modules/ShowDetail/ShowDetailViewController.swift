@@ -59,6 +59,13 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         tableView?.dataSource = self
     }
     
+    func setTableAndScrollHeight() {
+        tableHeightConstraint.constant = tableView.contentSize.height
+        view.layoutSubviews()
+        scrollView.contentSize = CGSize.init(width: view.frame.width, height: contentView.frame.height + tableView.contentSize.height)
+        scrollView.layoutIfNeeded()
+    }
+    
 }
 
 extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -111,10 +118,7 @@ extension ShowDetailViewController: ShowDetailPresenterProtocol {
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableHeightConstraint.constant = self.tableView.contentSize.height
-            self.view.layoutSubviews()
-            self.scrollView.contentSize = CGSize.init(width: self.view.frame.width, height: self.contentView.frame.height + self.tableView.contentSize.height)
-            self.scrollView.layoutIfNeeded()
+            self.setTableAndScrollHeight()
         }
     }
 
