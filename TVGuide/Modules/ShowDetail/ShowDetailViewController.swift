@@ -4,8 +4,6 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     static var nibName: String { "ShowDetailViewController" }
     
-    var episodesBySeason = [(key: String, value: Array<EpisodePresentable>)]()
-    
     var presenter: ShowDetailPresenter?
 
     @IBOutlet weak var showTitle: UILabel!
@@ -41,6 +39,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         statusLabel.text = show.status
         genresLabel.text = show.genres
         releaseYear.text = show.releaseYear
+        episodeAmountLabel.text = presenter?.show?.episodeAmount
     }
     
     func setupEpisodeInfo(episodes: [EpisodePresentable]) {
@@ -72,27 +71,40 @@ extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return episodesBySeason.count
+        guard let sections = presenter?.show?.episodeList.count else {
+            return 0
+        }
+
+        return sections
         
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = self.episodesBySeason[section]
-        let header = "Season \(section.key)"
+        
+        let header = "Season \(section + 1)"
+        
         return header
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.episodesBySeason[section]
-        return section.value.count
+        
+        guard let section = presenter?.show?.episodeList[section] else {
+            return 0
+        }
+        
+        return section.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowDetailTableViewCell.reuseIdentifier, for: indexPath) as! ShowDetailTableViewCell
         
-        let section = self.episodesBySeason[indexPath.section]
-        let episode = section.value[indexPath.row]
+        guard let section = presenter?.show?.episodeList[indexPath.section] else {
+            return cell
+        }
+
+        let episode = section[indexPath.row]
 
         cell.setup(episode: episode)
         
@@ -107,15 +119,7 @@ extension ShowDetailViewController: ShowDetailPresenterProtocol {
 
     func displayShow(show: ShowPresentable, summary: NSAttributedString) {
         setupShowInfo(show: show, summary: summary)
-    }
 
-    func displayEpisodes(episodes: [EpisodePresentable]) {
-        setupEpisodeInfo(episodes: episodes)
-        
-        guard let episodesBySeason = presenter?.printEpisodesBySeason(episodes) else { return }
-        
-        self.episodesBySeason = episodesBySeason
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.setTableAndScrollHeight()

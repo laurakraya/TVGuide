@@ -11,6 +11,8 @@ struct ShowPresentable {
     let rating: String
     let image: URL?
     let summary: String
+    var episodeList = [[EpisodePresentable]]()
+    var episodeAmount = "n/a"
     
     init(_ show: Show) {
         id = show.id

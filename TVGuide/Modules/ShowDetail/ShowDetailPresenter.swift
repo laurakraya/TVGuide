@@ -5,8 +5,6 @@ protocol ShowDetailPresenterProtocol: class {
 
     func displayShow(show: ShowPresentable, summary: NSAttributedString)
 
-    func displayEpisodes(episodes: [EpisodePresentable])
-
 }
 
 class ShowDetailPresenter {
@@ -33,7 +31,6 @@ class ShowDetailPresenter {
             self.summary = showDescription
         }
         
-        view?.displayShow(show: show, summary: summary)
         getEpisodes(show)
         
     }
@@ -41,6 +38,14 @@ class ShowDetailPresenter {
     func getEpisodes(_ show: ShowPresentable) {
         
         interactor?.fetchEpisodes(show: show)
+        
+    }
+    
+    func addEpisodeInfoToShow(_ episodes: [EpisodePresentable]) {
+        
+        let episodeList = episodesBySeason(episodes)
+        show?.episodeList = episodeList
+        episodeAmount(episodeList)
         
     }
     
@@ -56,13 +61,39 @@ class ShowDetailPresenter {
         
     }
     
-    func printEpisodesBySeason(_ episodes: [EpisodePresentable]) -> [(key: String, value: Array<EpisodePresentable>)] {
+    func episodesBySeason(_ episodes: [EpisodePresentable]) -> [[EpisodePresentable]] {
         
-        let episodesBySeason = Dictionary(grouping: episodes, by: { $0.season! })
+        var episodesBySeason = [[EpisodePresentable]]()
+        var currentSeason = [EpisodePresentable]()
+        var episodesModifiable = episodes
         
-        let episodesBySeasonSorted = episodesBySeason.sorted { $0.0 < $1.0 } .map { $0 }
+        currentSeason.append(episodes[0])
+        episodesModifiable.removeFirst()
         
-        return episodesBySeasonSorted
+        for episode in episodesModifiable {
+            if episode.season == currentSeason.last?.season {
+                currentSeason.append(episode)
+            } else{
+                episodesBySeason.append(currentSeason)
+                currentSeason = []
+                currentSeason.append(episode)
+            }
+        }
+        episodesBySeason.append(currentSeason)
+        
+        return episodesBySeason
+        
+    }
+    
+    func episodeAmount(_ episodes: [[EpisodePresentable]]?) {
+        
+        if let episodeList = episodes {
+            
+            let episodesFlattened = episodeList.flatMap{ $0 }
+            show?.episodeAmount = String(episodesFlattened.count)
+            
+        }
+
     }
 
 }
@@ -71,9 +102,13 @@ extension ShowDetailPresenter: SDInteractorToSDPresenter {
     
     func didRespond(episodes: [Episode]) {
         
-        EpisodestoEPresentables(episodes: episodes)
-        view?.displayEpisodes(episodes: self.episodesPresentables)
+        guard let show = self.show else {
+            return
+        }
         
+        EpisodestoEPresentables(episodes: episodes)
+        addEpisodeInfoToShow(self.episodesPresentables)
+        view?.displayShow(show: show, summary: self.summary)
     }
 
 }
