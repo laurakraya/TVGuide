@@ -4,8 +4,6 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
     
     static var nibName: String { "ShowDetailViewController" }
     
-    var episodesBySeason = [(key: String, value: Array<EpisodePresentable>)]()
-    
     var presenter: ShowDetailPresenter?
 
     @IBOutlet weak var showTitle: UILabel!
@@ -41,6 +39,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         statusLabel.text = show.status
         genresLabel.text = show.genres
         releaseYear.text = show.releaseYear
+        episodeAmountLabel.text = presenter?.show?.episodes?.numberOfEpisodes()
     }
     
     func setupEpisodeInfo(episodes: [EpisodePresentable]) {
@@ -59,33 +58,46 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         tableView?.dataSource = self
     }
     
+    func setTableAndScrollHeight() {
+        tableHeightConstraint.constant = tableView.contentSize.height
+        view.layoutSubviews()
+        scrollView.contentSize = CGSize.init(width: view.frame.width, height: contentView.frame.height + tableView.contentSize.height)
+        scrollView.layoutIfNeeded()
+    }
+    
 }
 
 extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return episodesBySeason.count
+
+        return presenter?.show?.episodes?.numberOfSections ?? 0
         
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = self.episodesBySeason[section]
-        let header = "Season \(section.key)"
+        
+        let header = presenter?.show?.episodes?.titleBysection(section: section)
+        
         return header
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.episodesBySeason[section]
-        return section.value.count
+        
+        return presenter?.show?.episodes?.numberOfRowsBy(section: section) ?? 0
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowDetailTableViewCell.reuseIdentifier, for: indexPath) as! ShowDetailTableViewCell
         
-        let section = self.episodesBySeason[indexPath.section]
-        let episode = section.value[indexPath.row]
+        guard let section = presenter?.show?.episodes?.episodeList[indexPath.section] else {
+            return cell
+        }
+
+        let episode = section[indexPath.row]
 
         cell.setup(episode: episode)
         
@@ -100,21 +112,10 @@ extension ShowDetailViewController: ShowDetailPresenterProtocol {
 
     func displayShow(show: ShowPresentable, summary: NSAttributedString) {
         setupShowInfo(show: show, summary: summary)
-    }
 
-    func displayEpisodes(episodes: [EpisodePresentable]) {
-        setupEpisodeInfo(episodes: episodes)
-        
-        guard let episodesBySeason = presenter?.printEpisodesBySeason(episodes) else { return }
-        
-        self.episodesBySeason = episodesBySeason
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableHeightConstraint.constant = self.tableView.contentSize.height
-            self.view.layoutSubviews()
-            self.scrollView.contentSize = CGSize.init(width: self.view.frame.width, height: self.contentView.frame.height + self.tableView.contentSize.height)
-            self.scrollView.layoutIfNeeded()
+            self.setTableAndScrollHeight()
         }
     }
 
