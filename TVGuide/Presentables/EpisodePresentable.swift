@@ -12,7 +12,7 @@ struct EpisodePresentable {
     let links: String?
     
     init(_ episode: Episode) {
-        id = episode.id!
+        id = episode.id
         url = episode.url ?? ""
         name = episode.name ?? "n/a"
         season = StringManager.optionalIntToStr(episode.season) ?? "n/a"
