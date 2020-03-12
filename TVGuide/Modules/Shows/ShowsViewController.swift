@@ -13,13 +13,13 @@ class ShowsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.getShows()
         configureTableView()
         configureSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter?.getShows()
     }
     
     override func viewWillAppear(_ animated: Bool) {
