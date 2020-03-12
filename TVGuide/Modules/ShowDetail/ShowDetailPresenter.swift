@@ -44,8 +44,7 @@ class ShowDetailPresenter {
     func addEpisodeInfoToShow(_ episodes: [EpisodePresentable]) {
         
         let episodeList = episodesBySeason(episodes)
-        show?.episodeList = episodeList
-        episodeAmount(episodeList)
+        show?.episodes = EpisodesBySeason.init(list: episodeList)
         
     }
     
@@ -63,37 +62,19 @@ class ShowDetailPresenter {
     
     func episodesBySeason(_ episodes: [EpisodePresentable]) -> [[EpisodePresentable]] {
         
+        let seasons = episodes.map({ $0.season }).reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+        
         var episodesBySeason = [[EpisodePresentable]]()
-        var currentSeason = [EpisodePresentable]()
-        var episodesModifiable = episodes
         
-        currentSeason.append(episodes[0])
-        episodesModifiable.removeFirst()
+        for season in seasons {
         
-        for episode in episodesModifiable {
-            if episode.season == currentSeason.last?.season {
-                currentSeason.append(episode)
-            } else{
-                episodesBySeason.append(currentSeason)
-                currentSeason = []
-                currentSeason.append(episode)
-            }
+            let episodesInSeason = episodes.filter({ $0.season == season })
+            episodesBySeason.append(episodesInSeason)
+            
         }
-        episodesBySeason.append(currentSeason)
         
         return episodesBySeason
         
-    }
-    
-    func episodeAmount(_ episodes: [[EpisodePresentable]]?) {
-        
-        if let episodeList = episodes {
-            
-            let episodesFlattened = episodeList.flatMap{ $0 }
-            show?.episodeAmount = String(episodesFlattened.count)
-            
-        }
-
     }
 
 }

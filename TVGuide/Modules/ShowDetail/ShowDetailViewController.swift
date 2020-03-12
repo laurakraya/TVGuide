@@ -39,7 +39,7 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
         statusLabel.text = show.status
         genresLabel.text = show.genres
         releaseYear.text = show.releaseYear
-        episodeAmountLabel.text = presenter?.show?.episodeAmount
+        episodeAmountLabel.text = presenter?.show?.episodes?.numberOfEpisodes()
     }
     
     func setupEpisodeInfo(episodes: [EpisodePresentable]) {
@@ -70,18 +70,14 @@ class ShowDetailViewController: UIViewController, NibLoadableView {
 extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        guard let sections = presenter?.show?.episodeList.count else {
-            return 0
-        }
 
-        return sections
+        return presenter?.show?.episodes?.numberOfSections ?? 0
         
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        let header = "Season \(section + 1)"
+        let header = presenter?.show?.episodes?.titleBysection(section: section)
         
         return header
         
@@ -89,18 +85,15 @@ extension ShowDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let section = presenter?.show?.episodeList[section] else {
-            return 0
-        }
+        return presenter?.show?.episodes?.numberOfRowsBy(section: section) ?? 0
         
-        return section.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ShowDetailTableViewCell.reuseIdentifier, for: indexPath) as! ShowDetailTableViewCell
         
-        guard let section = presenter?.show?.episodeList[indexPath.section] else {
+        guard let section = presenter?.show?.episodes?.episodeList[indexPath.section] else {
             return cell
         }
 
