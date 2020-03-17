@@ -1,4 +1,5 @@
 import Foundation
+@testable import TVGuide
 
 class NetworkManagerMock: NetworkManager {
     
@@ -29,5 +30,21 @@ class NetworkManagerMock: NetworkManager {
         showSearchResultDTOArray.append(showSearchResultDTO)
         
         completion(showSearchResultDTOArray)
+    }
+    
+    override func getEpisodeList(id: Int?, completion: @escaping ([EpisodeDTO]?) -> Void) {
+        
+        let episodeDTOSeason1 = EpisodeDTO(id: 1, url: "saraza", name: "saraza", season: 1, number: 1, airdate: nil, runtime: nil, image: nil, summary: "saraza", links: nil)
+        let episodeDTOSeason2 = EpisodeDTO(id: 1, url: "saraza", name: "saraza", season: 2, number: 1, airdate: nil, runtime: nil, image: nil, summary: "saraza", links: nil)
+        
+        var episodeDTOArray = [EpisodeDTO]()
+        episodeDTOArray.append(episodeDTOSeason1)
+        episodeDTOArray.append(episodeDTOSeason1)
+        episodeDTOArray.append(episodeDTOSeason1)
+        episodeDTOArray.append(episodeDTOSeason2)
+        episodeDTOArray.append(episodeDTOSeason2)
+        episodeDTOArray.append(episodeDTOSeason2)
+        
+        completion(episodeDTOArray)
     }
 }

@@ -1,4 +1,5 @@
 import Foundation
+@testable import TVGuide
 
 class ShowsInteractorMock: ShowsInteractor {
     

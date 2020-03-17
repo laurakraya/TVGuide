@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+@testable import TVGuide
 
 class ShowsRouterMock: ShowsRouter {
     var presenterVC: UIViewController?
