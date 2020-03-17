@@ -5,15 +5,21 @@ class ShowsViewController: UIViewController {
     var presenter: ShowsPresenter?
     
     @IBOutlet var tableView: UITableView!
-
+    @IBOutlet var searchBar: UISearchBar!
+    
+    var isSearchBarEmpty: Bool {
+      return searchBar.text?.isEmpty ?? true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.getShows()
         configureTableView()
+        configureSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter?.getShows()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,11 +34,20 @@ class ShowsViewController: UIViewController {
         tableView.rowHeight = 150
         tableView.register(nib,
                            forCellReuseIdentifier: ShowsTableViewCell.reuseIdentifier)
+        tableView.tableFooterView = UIView()
     }
     
     func setTableViewDelegates() {
         tableView?.delegate = self
         tableView?.dataSource = self
+    }
+    
+    func configureSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Shows"
+        searchBar.searchTextField.backgroundColor = UIColor.white
+        searchBar.searchTextField.textColor = .systemIndigo
+        searchBar.searchTextField.leftView?.tintColor = .systemIndigo
     }
 
 }
@@ -40,7 +55,7 @@ class ShowsViewController: UIViewController {
 extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return presenter?.getShowsPresentables().count ?? 0
         
     }
@@ -63,6 +78,19 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 
+}
+
+extension ShowsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if !isSearchBarEmpty {
+            presenter?.searchShows(query: searchText)
+        } else {
+            presenter?.getShows()
+        }
+    }
+    
 }
 
 extension ShowsViewController: ShowsPresenterToShowsVC {

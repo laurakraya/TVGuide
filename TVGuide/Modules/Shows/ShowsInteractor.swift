@@ -29,4 +29,26 @@ class ShowsInteractor {
             
         }
     }
+    
+    func searchShows(_ searchStr: String) {
+        
+        var shows = [Show]()
+        
+        let networkManager = NetworkManager()
+        networkManager.searchShows(search: searchStr) { [weak self] (showsList) in
+            
+            guard let showSearchResultListDTO = showsList else {
+                return
+            }
+            
+            showSearchResultListDTO.forEach({
+                if let showDTO = $0.show {
+                   shows.append(ShowDTOMapper.map(showDTO))
+                }
+            })
+
+            self?.presenter?.didRespond(shows: shows)
+            
+        }
+    }
 }

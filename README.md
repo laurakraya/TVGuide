@@ -63,3 +63,29 @@ Correcciones en el PR:
 - El interactor también se inicializa y asigna en el builder
 - Se arregla un problema de referencias entre presenter y vista (sólo uno de ellos debe tener una referencia weak para romper el strong reference cycle)
 - El presenter referencia al router y no viceversa, por lo tanto, la propiedad del presenter donde se referencia al router no necesita ser weak.
+
+
+QUINTA ETAPA: Episodes-Table 
+
+Se agrega a la vista del detalle de un show una tabla con distintas secciones por temporada y dentro de éstas, se agregan filas con los episodios correspondientes. 
+Esto presenta la dificultad de tener una TableView (que en principio tiene scroll propio), dentro de una ScrollView. El problema radica principalmente, en que esta última para funcionar correctamente no puede tener ambigüedad en su altura, sino que requiere un alto definido que la tabla de por sí no le proporciona. 
+Para resolverlo, después de intentar distintos enfoques, finalmente se anula el scroll de la tabla y se coloca un constraint para su altura. Una vez obtenidos los episodios y luego de hacer reloadData() de la tabla, se dispara una función que realiza lo siguiente:
+- toma la constraint de la altura de la tabla y le otorga el valor de la altura de su contenido.
+- se le pide a la vista que vuelva a realizar el layout de sus subviews.
+- se modifica el tamaño del contenido de la ScrollView, dándole el ancho de la pantalla y la altura del contenido de la tabla sumada a la altura del StackView que contiene los datos del detalle del show.
+- se le pide a la ScrollView que reacomode sus subviews de ser necesario.
+
+Por otro lado, para obtener los episodios filtrados por temporada, se buscaba pasar de un array de episodios ordenados -pero no separados- por temporada, a un array de arrays con la siguiente estructura: [[episodios de temporada uno], [episodios de temporada dos], [episodios de temporada tres]], con tantos subarrays como temporadas tenga un show.
+Para lograrlo primero se obtuvo mediante un map y un reduce, un array con las temporadas del show ordenadas. Luego se iteró sobre el mismo y en cada iteración se realizaron los siguientes pasos:
+- filtrar el array de episodios obteniendo sólo aquellos que se correspondan con la temporada en cuestión
+- appendear esos episodios a un array de episodios de la temporada
+- appendear ese array a un array final que va a terminar conteniendo todos los arrays de episodios por temporada
+
+SEXTA ETAPA: Searchbar
+
+Se agrega a la pantalla de listado de shows una UISearchBar que permita buscar shows según el texto ingresado cada vez que este se modifica y muestre los resultados en la tabla de shows. En caso de cancelar la búsqueda o de que la searchbar quede en blanco, la tabla deberá volver a mostrar todos los shows que venían en el llamado original.
+Para lograr esto, se asigna al ShowsViewController como delegado de la UISearchBar y éste implementa el protocolo UISearchBarDelegate y a continuación, el método opcional textDidChange que se dispara al realizar cambios en el contenido de la searchbar. Si el input está vacío o la búsqueda se cancela, se le pide al presenter, que a su vez le pide al interactor, que realice el llamado a la API que trae todos los shows. Si el input no está vacío, se le pide al presenter, que a su vez le pide al interactor, que realice otro llamado que le pega a un endpoint de búsqueda de la API pasando el contenido del input de la searchbar como parámetro de búsqueda. En cualquiera de los dos casos, finalmente le llega de vuelta a la vista el array de shows correspondiente y se actualiza la tabla.
+
+Para poder mantener los resultados de una búsqueda después de haber pasado a la vista del detalle de uno de ellos y haber vuelto a la vista del listado de shows, la llamada a presenter?.getShows() se borra del método viewDidAppear() (que se ejecuta cada vez que volvemos a esa pantalla) y se coloca en el viewDidLoad(), que es ejecutado una sola vez al cargar la app.
+
+También se juega un poco a cambiar el aspecto de la searchbar modificando el valor de algunas de sus propiedades y se experimenta con el UISearchController que trae resueltas ciertas cuestiones, le da a la searchbar otro comportamiento al ser seleccionada y la mantiene en la parte superior de la pantalla, pero éste último es descartado en favor de la UISearchBar.

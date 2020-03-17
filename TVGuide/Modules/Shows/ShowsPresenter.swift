@@ -22,6 +22,12 @@ class ShowsPresenter {
         
     }
     
+    func searchShows(query: String) {
+        
+        interactor?.searchShows(query)
+        
+    }
+    
     func getShowsPresentables() -> [ShowPresentable] {
         
         return self.showsPresentables

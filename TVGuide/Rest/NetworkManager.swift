@@ -43,6 +43,26 @@ class NetworkManager {
             }
         }
     }
+    
+    func searchShows(search: String?, completion: @escaping ([ShowSearchResultDTO]?) -> Void) {
+        if let search = search {
+            let urlString = "http://api.tvmaze.com/search/shows?q=\(search)"
+            AF.request(urlString).response { response in
+                guard let data = response.data else { return }
+                do {
+                    let decoder = JSONDecoder()
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = self.dateFormat
+                    decoder.dateDecodingStrategy = .formatted(formatter)
+                    let showsList = try decoder.decode(ShowSearchResultListDTO.self, from: data)
+                    completion(showsList)
+                } catch let error {
+                    print(error)
+                    completion(nil)
+                }
+            }
+        }
+    }
 }
 
 extension UIImageView {

@@ -64,33 +64,9 @@ struct NetworkDTO: Codable {
 
 // MARK: - Country
 struct CountryDTO: Codable {
-    let name: NameDTO?
-    let code: CodeDTO?
-    let timezone: TimezoneDTO?
-}
-
-enum CodeDTO: String, Codable {
-    case ca = "CA"
-    case fr = "FR"
-    case gb = "GB"
-    case jp = "JP"
-    case us = "US"
-}
-
-enum NameDTO: String, Codable {
-    case canada = "Canada"
-    case france = "France"
-    case japan = "Japan"
-    case unitedKingdom = "United Kingdom"
-    case unitedStates = "United States"
-}
-
-enum TimezoneDTO: String, Codable {
-    case americaHalifax = "America/Halifax"
-    case americaNewYork = "America/New_York"
-    case asiaTokyo = "Asia/Tokyo"
-    case europeLondon = "Europe/London"
-    case europeParis = "Europe/Paris"
+    let name: String?
+    let code: String?
+    let timezone: String?
 }
 
 // MARK: - Rating
