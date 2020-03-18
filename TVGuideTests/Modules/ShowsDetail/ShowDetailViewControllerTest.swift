@@ -40,18 +40,7 @@ class ShowDetailViewControllerTest: XCTestCase {
     }
     
     //labels
-    func testViewLabelsDisplayCorrectText() {
-        //Arrange
-        //Act
-
-        //Assert
-        XCTAssertNil(self.controller.showDescription)
-        //XCTAssertTrue(self.controller.showDescription.text == "Un show para conquistarlos a todos")
-        //print(controller.showDescription.text)
-
-    }
-    
-    func testTesting() {
+    func testViewLabelsDisplayTheCorrectText() {
         //Arrange
         let mockInteractor = ShowDetailInteractorMock()
         presenter?.interactor = mockInteractor
